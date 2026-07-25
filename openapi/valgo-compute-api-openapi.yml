@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: Human Crash Baselines Compute API
+  description: Compute human crash-rate baselines over filterable crash and exposure data. The versioned, API-key-authenticated public surface lives under `/v1`; call `GET /v1/filters` to discover every filter and valid value. Send your key via the `X-API-Key` header.
+  version: 0.1.3
+tags:
+- name: Compute
+paths:
+  /compute:
+    post:
+      summary: Post Compute
+      operationId: post_compute_compute_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComputeRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Post Compute Compute Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Compute
+components:
+  schemas:
+    ComputeRequest:
+      properties:
+        county:
+          type: string
+          title: County
+          default: travis
+        selections:
+          additionalProperties: true
+          type: object
+          title: Selections
+        cell_filter:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Cell Filter
+        summary_only:
+          type: boolean
+          title: Summary Only
+          default: false
+      type: object
+      title: ComputeRequest
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError

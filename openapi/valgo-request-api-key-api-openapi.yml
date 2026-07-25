@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: Human Crash Baselines Compute Request Api Key API
+  description: Compute human crash-rate baselines over filterable crash and exposure data. The versioned, API-key-authenticated public surface lives under `/v1`; call `GET /v1/filters` to discover every filter and valid value. Send your key via the `X-API-Key` header.
+  version: 0.1.3
+tags:
+- name: Request Api Key
+paths:
+  /request-api-key:
+    post:
+      summary: Request Api Key
+      description: 'Mint an API key for the given email, email a copy, and return it so the
+
+        web form can show it immediately. Unauthenticated by design — this is how
+
+        you GET a key — but rate-limited per email and per IP to curb abuse.'
+      operationId: request_api_key_request_api_key_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Request Api Key
+components:
+  schemas:
+    ApiKeyResponse:
+      properties:
+        api_key:
+          type: string
+          title: Api Key
+        email:
+          type: string
+          title: Email
+        emailed:
+          type: boolean
+          title: Emailed
+        env_var:
+          type: string
+          title: Env Var
+          default: HUMANBASELINES_API_KEY
+      type: object
+      required:
+      - api_key
+      - email
+      - emailed
+      title: ApiKeyResponse
+    ApiKeyRequest:
+      properties:
+        email:
+          type: string
+          title: Email
+      type: object
+      required:
+      - email
+      title: ApiKeyRequest
+      description: The web form posts just an email; that's all we need to mint a key.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
