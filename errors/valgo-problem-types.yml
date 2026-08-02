@@ -1,0 +1,60 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.humanbaselines.com/reference/errors + openapi/valgo-humanbaselines-openapi.json
+format: fastapi-validation-envelope
+envelope: >-
+  Non-2xx responses use the FastAPI error shape - validation failures return
+  HTTP 422 with a detail[] array of {loc, msg, type} items
+  (components.schemas.HTTPValidationError / ValidationError in the spec).
+  Not RFC 9457 application/problem+json. The official Python client maps
+  statuses to a typed exception hierarchy rooted at HumanBaselinesError,
+  with APIError (carrying .status_code and .body) as the fallback.
+problems:
+- status: 400
+  title: Request the engine could not honor
+  detail: >-
+    A well-formed request the engine couldn't honor - e.g. route/depot mode
+    for a geofence-only county, denominator_vmt="hpms" outside California,
+    or a depot pin out of coverage. Raised as APIError by the client.
+  source: https://docs.humanbaselines.com/reference/errors
+- status: 401
+  title: Missing or invalid API key
+  detail: >-
+    X-API-Key header missing or invalid; raised as AuthenticationError.
+    Keys are compared in constant time so an invalid key reveals nothing
+    about a valid one through timing.
+  source: https://docs.humanbaselines.com/getting-started/api-access
+- status: 404
+  title: Not found
+  detail: Unknown route, or a county/resource that isn't loaded; raised as NotFoundError.
+  source: https://docs.humanbaselines.com/reference/errors
+- status: 422
+  title: Validation error
+  detail: >-
+    Request shape was wrong (bad value, unknown field); detail[] carries
+    FastAPI's field-level loc/msg/type. Declared on every /v1 operation in
+    the OpenAPI. The client also validates selections locally against
+    GET /v1/filters before sending.
+  schema: HTTPValidationError
+  source_operations:
+  - openapi/valgo-humanbaselines-openapi.json#v1_compute_v1_compute_post
+  - openapi/valgo-humanbaselines-openapi.json#v1_compute_batch_v1_compute_batch_post
+  - openapi/valgo-humanbaselines-openapi.json#v1_compute_route_v1_compute_route_post
+  - openapi/valgo-humanbaselines-openapi.json#v1_compute_depot_route_v1_compute_depot_route_post
+  - openapi/valgo-humanbaselines-openapi.json#v1_filters_v1_filters_get
+  - openapi/valgo-humanbaselines-openapi.json#v1_regions_v1_regions_get
+  - openapi/valgo-humanbaselines-openapi.json#v1_manifest_v1_manifest_get
+- status: 429
+  title: Rate limited (key requests)
+  detail: >-
+    POST /request-api-key is rate limited; on 429 wait and retry later or
+    email humanbaselines@valgo.ai.
+  source: https://humanbaselines.com/claude
+- status: 503
+  title: Service unavailable (warm-up / fails closed)
+  detail: >-
+    Returned while the service warms up (cold start) - the official client
+    auto-retries 502/503/504 with exponential backoff - and also when the
+    server has no keys configured (fails closed; never serves an open API).
+    Raised as ServiceUnavailableError when retries are exhausted.
+  source: https://docs.humanbaselines.com/reference/errors

@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/valgo-humanbaselines-openapi.json
+server:
+  name: valgo-humanbaselines
+  transport: http
+notes: >-
+  No official hosted/remote MCP server was found for Valgo or the Human
+  Crash Baselines API (no MCP docs, no registry entry). This is a candidate
+  tool list derived one-tool-per-operation from the public /v1 OpenAPI
+  surface; auth would be the same X-API-Key documented in
+  authentication/valgo-authentication.yml.
+tools:
+- name: get_filters
+  description: Discover every filter, valid value, and default per compute mode.
+  source_operation: openapi/valgo-humanbaselines-openapi.json#v1_filters_v1_filters_get
+- name: get_regions
+  description: List available regions and the compute modes each supports.
+  source_operation: openapi/valgo-humanbaselines-openapi.json#v1_regions_v1_regions_get
+- name: get_manifest
+  description: Describe the underlying crash/exposure data build.
+  source_operation: openapi/valgo-humanbaselines-openapi.json#v1_manifest_v1_manifest_get
+- name: compute_baseline
+  description: Compute a geofence human crash-rate baseline for a set of filter selections.
+  source_operation: openapi/valgo-humanbaselines-openapi.json#v1_compute_v1_compute_post
+- name: compute_baseline_batch
+  description: Compute multiple baseline definitions in one call.
+  source_operation: openapi/valgo-humanbaselines-openapi.json#v1_compute_batch_v1_compute_batch_post
+- name: compute_route_baseline
+  description: Compute a crash-rate baseline along interstate route segments.
+  source_operation: openapi/valgo-humanbaselines-openapi.json#v1_compute_route_v1_compute_route_post
+- name: compute_depot_route_baseline
+  description: Compute a crash-rate baseline for a depot-to-depot route given two lat/lon pins.
+  source_operation: openapi/valgo-humanbaselines-openapi.json#v1_compute_depot_route_v1_compute_depot_route_post

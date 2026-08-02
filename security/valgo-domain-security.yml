@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: valgo.ai
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  3 05:33:24 2026 GMT
+  hsts: false
+- host: docs.humanbaselines.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 16 04:03:04 2026 GMT
+  hsts: true
+  hsts_max_age: 31556926
+- host: humanbaselines.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 24 17:19:06 2026 GMT
+  hsts: true
+  hsts_max_age: 31556926
+domains:
+- domain: valgo.ai
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: humanbaselines.com
+  dnssec: true
+  caa: []
+  spf: false
+  dmarc: false

@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/valgorithmic/humanbaselines + openapi/valgo-humanbaselines-openapi.json + https://pypi.org/pypi/humanbaselines/json
+versioning:
+  scheme: uri-path
+  current: v1
+  api_version: 0.1.3
+  docs: https://docs.humanbaselines.com
+  notes: >-
+    Public surface versioned under /v1; the OpenAPI info.version is 0.1.3.
+    The Python client (0.1.5 on PyPI, 6 releases) is regenerated from the
+    server's OpenAPI on every contract change, and releases are automated -
+    a version bump in the upstream app dispatches a tagged release
+    published via PyPI Trusted Publishing.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published deprecation policy or Sunset/Deprecation header support found.
+sla:
+  url: null
+  notes: >-
+    No published SLA. The service cold-starts (Cloud Run); the client
+    absorbs warm-up with retries on 502/503/504. GET /health is exposed on
+    the origin host for liveness.
+status_page: null
+deprecated_operations: []

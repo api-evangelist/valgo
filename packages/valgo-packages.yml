@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://pypi.org/project/humanbaselines/ + https://github.com/valgorithmic/humanbaselines
+packages:
+- language: python
+  registry: pypi
+  name: humanbaselines
+  version: 0.1.5
+  url: https://pypi.org/project/humanbaselines/
+  install: pip install humanbaselines
+  official: true
+  author: Valgorithmic, Inc. (Valgo)
+  docs: https://docs.humanbaselines.com
+  source_code: https://github.com/valgorithmic/humanbaselines
+  license: Apache-2.0
+  description: >-
+    Python client for the Human Crash Baselines API - typed access to
+    human-driver crash-rate baselines by region, route, and filter. Typed
+    models are generated from the server's OpenAPI schema; releases are
+    published to PyPI via Trusted Publishing, automated from the upstream
+    app's version bumps.
+notes: >-
+  npm "valgo" returns 404 (no package) and pypi "valgo" returns 404 - the
+  only first-party client library found is the Python humanbaselines
+  package. No Maven/NuGet/Go/RubyGems/Packagist/crates.io first-party
+  packages were found under the Valgo/valgorithmic names.

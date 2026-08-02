@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: searched
+source: https://pypi.org/pypi/humanbaselines/json + https://github.com/valgorithmic/humanbaselines
+scheme: semver (0.x pre-1.0)
+current_version: 0.1.5
+notes: >-
+  Valgo publishes no standalone dated changelog page; the release trail is
+  the humanbaselines Python client, whose releases are automated - a
+  version bump in the upstream app dispatches a tagged GitHub release
+  (v<version>) published to PyPI via Trusted Publishing, and the client's
+  typed models are regenerated from the server's OpenAPI on every contract
+  change (so client versions track API contract changes). The API's own
+  OpenAPI info.version was 0.1.3 on 2026-07-21. Entries below are the
+  dated PyPI releases; per-release notes live at
+  https://github.com/valgorithmic/humanbaselines/releases.
+entries:
+- version: 0.1.5
+  date: '2026-06-29'
+- version: 0.1.4
+  date: '2026-06-25'
+- version: 0.1.3
+  date: '2026-06-19'
+- version: 0.1.2
+  date: '2026-06-18'
+- version: 0.1.1
+  date: '2026-06-18'
+- version: 0.1.0
+  date: '2026-06-17'

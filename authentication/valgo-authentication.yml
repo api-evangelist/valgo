@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/valgorithmic/humanbaselines (README) + https://humanbaselines.com/openapi.json (info.description)
+docs: https://docs.humanbaselines.com
+summary:
+  types: [apiKey]
+  api_key_in: [header]
+  oauth2_flows: []
+schemes:
+- name: X-API-Key
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  key_prefix: hbk_
+  environment_variable: HUMANBASELINES_API_KEY
+  description: >-
+    The versioned public surface under /v1 is API-key-authenticated; keys are
+    sent via the X-API-Key header (quoted from the API's own OpenAPI
+    info.description). Keys use the hbk_ prefix and the official Python
+    client reads them from the HUMANBASELINES_API_KEY environment variable.
+    Keys are requested via the POST /request-api-key operation
+    (operationId request_api_key_request_api_key_post).
+  sources:
+  - openapi/valgo-humanbaselines-openapi.json
+notes: >-
+  The OpenAPI document itself declares no components.securitySchemes; the
+  auth model above is taken from the provider's published README and the
+  spec's info.description. Missing 401 responses / securitySchemes in the
+  spec are flagged in overlays/valgo-humanbaselines-overlay.yaml.

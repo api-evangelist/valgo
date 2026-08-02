@@ -1,0 +1,34 @@
+# Valgo
+
+> Valgo is a public benefit corporation building the risk quantification layer for physical AI. It builds probabilistic models of routes, tasks, and environments to produce the simulated loss estimates insurers need to price coverage for autonomous trucks, robotaxis, and robots. Y Combinator W26, backed by Floodgate and Menlo Ventures. Its first public API is the Human Crash Baselines API - human-driver crash-rate baselines by region, route, and filter.
+
+## APIs
+
+- [Human Crash Baselines API docs](https://docs.humanbaselines.com): Typed access to human-driver crash-rate baselines; /v1 REST surface, X-API-Key auth
+- [OpenAPI (public, no key needed)](https://humanbaselines.com/openapi.json): OpenAPI 3.1 for every endpoint, filter, allowed value, and default
+- [Agent primer](https://humanbaselines.com/claude): Provider-published markdown that primes a coding agent to use the API
+- [Web tool](https://humanbaselines.com/): Interactive baselines tool; URL query params mirror the API's filter ids
+- [Python client (PyPI)](https://pypi.org/project/humanbaselines/): pip install humanbaselines - typed models generated from the server's OpenAPI
+- [GitHub: valgorithmic/humanbaselines](https://github.com/valgorithmic/humanbaselines): Apache-2.0 client source
+
+## Company
+
+- [Website](https://valgo.ai/): Home, research, and team for the physical-AI risk quantification platform
+- [News](https://valgo.ai/news/): Company announcements
+- [Y Combinator profile](https://www.ycombinator.com/companies/valgo): Batch W26, San Francisco, founded 2025
+- [LinkedIn](https://www.linkedin.com/company/valgorithmic): Company LinkedIn (Valgorithmic)
+
+## Research
+
+- [Human Crash Baselines for Robotaxis and Robotrucks (2026 white paper, PDF)](https://valgo.ai/pdf/valgo-humanbaselines-2026.pdf): Computes human crash-rate baselines for robotaxis and autonomous trucks via specification-curve analysis
+- [Announcement: Human crash baselines](https://valgo.ai/news/humanbaselines/): Launch post for the baselines tool
+
+## Policies
+
+- [Terms of Service](https://valgo.ai/terms/)
+- [Privacy Policy](https://valgo.ai/privacy/)
+- [robots.txt Content Signals](https://valgo.ai/robots.txt): Declares search=yes, ai-train=no, use=reference
+
+## API Evangelist profile
+
+- [APIs.json profile](https://raw.githubusercontent.com/api-evangelist/valgo/refs/heads/main/apis.yml): Machine-readable index of everything captured about Valgo

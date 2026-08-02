@@ -1,0 +1,59 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/valgorithmic/humanbaselines (README) + openapi/valgo-humanbaselines-openapi.json
+authentication:
+  style: api-key header
+  header: X-API-Key
+  key_prefix: hbk_
+  environment_variable: HUMANBASELINES_API_KEY
+  see: authentication/valgo-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  notes: >-
+    The versioned, API-key-authenticated public surface lives under /v1
+    (per the API's info.description). Unversioned siblings of the /v1
+    operations also exist at the root (e.g. /compute, /manifest) alongside
+    /health and /request-api-key.
+discovery:
+  runtime_filters: >-
+    GET /v1/filters is the authoritative runtime source for every filter,
+    valid value, and default per compute mode - the client validates
+    selections locally against it before sending a request.
+  regions: GET /v1/regions lists available regions and which modes (geofence/route/depot) each supports.
+  manifest: GET /v1/manifest describes the underlying data build.
+defaults:
+  behavior: >-
+    Omitted filters fall back to the API's server-side defaults, which
+    reproduce the web UI's headline numbers. Route/depot modes default
+    ego_vehicle to ["combination"] (Class-8 combination trucks).
+error_envelope:
+  format: fastapi-validation-envelope
+  see: errors/valgo-problem-types.yml
+retries:
+  policy: >-
+    The official client retries 502/503/504 with exponential backoff
+    (default max_retries 2, timeout 30s per request) to absorb cold-start
+    warm-up; no Retry-After contract is documented.
+idempotency:
+  supported: false
+  notes: >-
+    No idempotency-key header or replay contract is documented; compute
+    operations are read-only calculations (POST bodies carry filter
+    selections), so retries are safe in practice but no formal
+    idempotency contract is published.
+pagination:
+  style: none
+  notes: No paginated collections - responses are complete computed results.
+request_tracing:
+  documented: false
+rate_limits:
+  documented: partial
+  notes: >-
+    POST /request-api-key is rate limited (429 documented in the provider's
+    agent primer at https://humanbaselines.com/claude); no rate-limit
+    contract is published for the /v1 compute surface.
+cross_links:
+  errors: errors/valgo-problem-types.yml
+  lifecycle: lifecycle/valgo-lifecycle.yml
+  authentication: authentication/valgo-authentication.yml

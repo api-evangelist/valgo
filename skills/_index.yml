@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+source: https://humanbaselines.com/claude
+skills:
+- file: valgo-humanbaselines-agent-primer.md
+  name: Human Crash Baselines - agent primer
+  description: >-
+    Provider-published agent primer (served as text/markdown at
+    https://humanbaselines.com/claude) that teaches a coding agent to prime a
+    session with the Human Crash Baselines API - test the X-API-Key,
+    self-provision a key via POST /request-api-key, discover filters via
+    GET /openapi.json + /v1/filters + /v1/regions, call the four compute
+    endpoints, read rate/CI/N/D_billions results, and link answers back to
+    the web tool. Saved verbatim; provider-authored (searched, not
+    generated).
+  api: openapi/valgo-humanbaselines-openapi.json
+  operations:
+  - v1_filters_v1_filters_get
+  - v1_regions_v1_regions_get
+  - v1_manifest_v1_manifest_get
+  - v1_compute_v1_compute_post
+  - v1_compute_batch_v1_compute_batch_post
+  - v1_compute_route_v1_compute_route_post
+  - v1_compute_depot_route_v1_compute_depot_route_post
+  - request_api_key_request_api_key_post

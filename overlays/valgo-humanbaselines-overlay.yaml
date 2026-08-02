@@ -1,0 +1,32 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Human Crash Baselines API
+  version: 1.0.0
+extends: openapi/valgo-humanbaselines-openapi.json
+x-generated: '2026-07-21'
+x-method: generated
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: valgo
+    x-apievangelist-notes: >-
+      Harvested verbatim from https://humanbaselines.com/openapi.json on
+      2026-07-21. Gaps observed (not mutated in the original): no
+      components.securitySchemes despite the documented X-API-Key header;
+      no servers[] array (production host is https://humanbaselines.com);
+      401/503 responses documented in the client README are not declared
+      on operations; root-level unversioned duplicates of the /v1
+      operations are exposed.
+- target: $
+  update:
+    servers:
+    - url: https://humanbaselines.com
+      description: Production (proxies /v1/*)
+- target: $.components
+  update:
+    securitySchemes:
+      ApiKeyAuth:
+        type: apiKey
+        in: header
+        name: X-API-Key
+        description: API key (hbk_ prefix), requested via POST /request-api-key.

@@ -1,0 +1,69 @@
+generated: '2026-07-21'
+method: searched
+source: live HTTP probes of https://valgo.ai and https://humanbaselines.com
+hosts:
+- host: https://valgo.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /robots.txt
+    status: 200
+    file: valgo-robots.txt
+    notes: >-
+      Cloudflare-managed Content Signals Policy - declares
+      "Content-Signal: search=yes,ai-train=no,use=reference" for all user
+      agents and disallows AI-training crawlers (GPTBot, CCBot, ClaudeBot,
+      Google-Extended, Bytespider, Amazonbot, Applebot-Extended,
+      meta-externalagent). A published machine-readable consent/AI-use
+      signal for the domain.
+  - path: /sitemap.xml
+    status: 200
+    notes: >-
+      Five URLs total (home, /news/, /news/humanbaselines/, /privacy/,
+      /terms/) - confirms no developer/docs/API surface is published on
+      this host as of the probe date.
+- host: https://humanbaselines.com
+  notes: >-
+    The app serves an SPA catch-all - every unknown path (including
+    /.well-known/security.txt, /.well-known/openid-configuration,
+    /.well-known/api-catalog, /llms.txt) returns HTTP 200 with
+    text/html, so those are NOT real discovery documents and are recorded
+    as absent. Real machine-readable documents verified by content type:
+  documents:
+  - path: /openapi.json
+    status: 200
+    content_type: application/json
+    file: ../openapi/valgo-humanbaselines-openapi.json
+    notes: Public OpenAPI 3.1 (no key required) for the Human Crash Baselines API.
+  - path: /claude
+    status: 200
+    content_type: text/markdown
+    file: ../skills/valgo-humanbaselines-agent-primer.md
+    notes: Provider-published agent primer (also served at /claude.md).
+  - path: /.well-known/security.txt
+    status: absent
+    notes: SPA catch-all 200 text/html - not a real security.txt.
+  - path: /.well-known/openid-configuration
+    status: absent
+    notes: SPA catch-all 200 text/html - not a real OIDC discovery document.
+  - path: /.well-known/api-catalog
+    status: absent
+    notes: SPA catch-all 200 text/html - not a real api-catalog.
+  - path: /llms.txt
+    status: absent
+    notes: SPA catch-all 200 text/html - not a real llms.txt.
+- host: https://docs.humanbaselines.com
+  documents:
+  - path: /llms.txt
+    status: absent
+    notes: VitePress SPA returns its 404 page with HTTP 200 - no real llms.txt.

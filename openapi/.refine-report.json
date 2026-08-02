@@ -1,0 +1,28 @@
+{
+  "provider": "valgo",
+  "sources": [
+    "valgo-compute-api-openapi.yml",
+    "valgo-compute-batch-api-openapi.yml",
+    "valgo-compute-depot-route-api-openapi.yml",
+    "valgo-compute-route-api-openapi.yml",
+    "valgo-health-api-openapi.yml",
+    "valgo-manifest-api-openapi.yml",
+    "valgo-request-api-key-api-openapi.yml",
+    "valgo-v1-api-openapi.yml"
+  ],
+  "outputs": [
+    "valgo-compute-api-openapi.yml",
+    "valgo-compute-batch-api-openapi.yml",
+    "valgo-compute-depot-route-api-openapi.yml",
+    "valgo-compute-route-api-openapi.yml",
+    "valgo-health-api-openapi.yml",
+    "valgo-manifest-api-openapi.yml",
+    "valgo-request-api-key-api-openapi.yml",
+    "valgo-v1-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

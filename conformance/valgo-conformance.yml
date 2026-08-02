@@ -1,0 +1,31 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/valgo-humanbaselines-openapi.json + https://github.com/valgorithmic/humanbaselines
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: Published spec at https://humanbaselines.com/openapi.json declares openapi 3.1.0
+- id: api-key-auth
+  conforms: true
+  evidence: X-API-Key header auth documented in the spec info.description and client README
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 security schemes declared or documented
+- id: oidc
+  conforms: false
+  evidence: No openid-configuration published; no OIDC schemes
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use the FastAPI HTTPValidationError envelope, not application/problem+json
+- id: uri-path-versioning
+  conforms: true
+  evidence: Public surface versioned under /v1 per info.description
+- id: json-api
+  conforms: false
+  evidence: Plain JSON request/response models, not JSON:API
+- id: pagination
+  conforms: false
+  evidence: No paginated collections in the spec
+- id: idempotency-key
+  conforms: false
+  evidence: No Idempotency-Key header or replay contract documented

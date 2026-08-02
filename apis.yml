@@ -1,8 +1,30 @@
 aid: valgo
 name: Valgo
-description: Valgo is a company surfaced as a portfolio company of y-combinator and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Valgo is a public benefit corporation building the risk quantification layer
+  for physical AI - the insurance risk layer autonomous systems need. Insurers
+  struggle to price autonomous trucks, robotaxis, and robots because the
+  historical claims data does not exist, so Valgo builds probabilistic models
+  of routes, tasks, and environments from the bottom up and outputs the
+  simulated loss estimates insurers need to price coverage across validation,
+  deployment, and insurance. Founded by Stanford safety-validation researchers
+  and an actuary with over a decade of insurance leadership, Valgo is a Y
+  Combinator W26 company backed by Floodgate and Menlo Ventures, and publishes
+  research including human crash baselines for robotaxis and robotrucks.
 url: https://raw.githubusercontent.com/api-evangelist/valgo/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://valgo.ai/media/valgo-social-media.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,12 +33,197 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Insurance
+- Risk Management
+- Autonomous Vehicles
+- Robotics
+- Artificial Intelligence
+- Safety Validation
+- Actuarial
+apis:
+- aid: valgo:valgo-compute-api
+  name: Valgo Compute API
+  description: The Compute API from Valgo — 1 operation(s) for compute.
+  humanURL: https://docs.humanbaselines.com
+  baseURL: https://humanbaselines.com/v1
+  tags:
+  - Compute
+  properties:
+  - type: OpenAPI
+    url: openapi/valgo-compute-api-openapi.yml
+  - type: Documentation
+    url: https://docs.humanbaselines.com
+  - type: APIReference
+    url: https://docs.humanbaselines.com/reference/client
+  - type: GettingStarted
+    url: https://docs.humanbaselines.com/getting-started/quickstart
+- aid: valgo:valgo-compute-batch-api
+  name: Valgo Compute Batch API
+  description: The Compute Batch API from Valgo — 1 operation(s) for compute batch.
+  humanURL: https://docs.humanbaselines.com
+  baseURL: https://humanbaselines.com/v1
+  tags:
+  - Compute Batch
+  properties:
+  - type: OpenAPI
+    url: openapi/valgo-compute-batch-api-openapi.yml
+  - type: Documentation
+    url: https://docs.humanbaselines.com
+  - type: APIReference
+    url: https://docs.humanbaselines.com/reference/client
+  - type: GettingStarted
+    url: https://docs.humanbaselines.com/getting-started/quickstart
+- aid: valgo:valgo-compute-depot-route-api
+  name: Valgo Compute Depot Route API
+  description: The Compute Depot Route API from Valgo — 1 operation(s) for compute depot route.
+  humanURL: https://docs.humanbaselines.com
+  baseURL: https://humanbaselines.com/v1
+  tags:
+  - Compute Depot Route
+  properties:
+  - type: OpenAPI
+    url: openapi/valgo-compute-depot-route-api-openapi.yml
+  - type: Documentation
+    url: https://docs.humanbaselines.com
+  - type: APIReference
+    url: https://docs.humanbaselines.com/reference/client
+  - type: GettingStarted
+    url: https://docs.humanbaselines.com/getting-started/quickstart
+- aid: valgo:valgo-compute-route-api
+  name: Valgo Compute Route API
+  description: The Compute Route API from Valgo — 1 operation(s) for compute route.
+  humanURL: https://docs.humanbaselines.com
+  baseURL: https://humanbaselines.com/v1
+  tags:
+  - Compute Route
+  properties:
+  - type: OpenAPI
+    url: openapi/valgo-compute-route-api-openapi.yml
+  - type: Documentation
+    url: https://docs.humanbaselines.com
+  - type: APIReference
+    url: https://docs.humanbaselines.com/reference/client
+  - type: GettingStarted
+    url: https://docs.humanbaselines.com/getting-started/quickstart
+- aid: valgo:valgo-health-api
+  name: Valgo Health API
+  description: The Health API from Valgo — 1 operation(s) for health.
+  humanURL: https://docs.humanbaselines.com
+  baseURL: https://humanbaselines.com/v1
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/valgo-health-api-openapi.yml
+  - type: Documentation
+    url: https://docs.humanbaselines.com
+  - type: APIReference
+    url: https://docs.humanbaselines.com/reference/client
+  - type: GettingStarted
+    url: https://docs.humanbaselines.com/getting-started/quickstart
+- aid: valgo:valgo-manifest-api
+  name: Valgo Manifest API
+  description: The Manifest API from Valgo — 1 operation(s) for manifest.
+  humanURL: https://docs.humanbaselines.com
+  baseURL: https://humanbaselines.com/v1
+  tags:
+  - Manifest
+  properties:
+  - type: OpenAPI
+    url: openapi/valgo-manifest-api-openapi.yml
+  - type: Documentation
+    url: https://docs.humanbaselines.com
+  - type: APIReference
+    url: https://docs.humanbaselines.com/reference/client
+  - type: GettingStarted
+    url: https://docs.humanbaselines.com/getting-started/quickstart
+- aid: valgo:valgo-request-api-key-api
+  name: Valgo Request Api Key API
+  description: The Request Api Key API from Valgo — 1 operation(s) for request api key.
+  humanURL: https://docs.humanbaselines.com
+  baseURL: https://humanbaselines.com/v1
+  tags:
+  - Request Api Key
+  properties:
+  - type: OpenAPI
+    url: openapi/valgo-request-api-key-api-openapi.yml
+  - type: Documentation
+    url: https://docs.humanbaselines.com
+  - type: APIReference
+    url: https://docs.humanbaselines.com/reference/client
+  - type: GettingStarted
+    url: https://docs.humanbaselines.com/getting-started/quickstart
+- aid: valgo:valgo-v1-api
+  name: Valgo v1 API
+  description: The v1 API from Valgo — 7 operation(s) for v1.
+  humanURL: https://docs.humanbaselines.com
+  baseURL: https://humanbaselines.com/v1
+  tags:
+  - v1
+  properties:
+  - type: OpenAPI
+    url: openapi/valgo-v1-api-openapi.yml
+  - type: Documentation
+    url: https://docs.humanbaselines.com
+  - type: APIReference
+    url: https://docs.humanbaselines.com/reference/client
+  - type: GettingStarted
+    url: https://docs.humanbaselines.com/getting-started/quickstart
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+common:
+- type: AgenticAccess
+  url: agentic-access/valgo-agentic-access.yml
+- type: DomainSecurity
+  url: security/valgo-domain-security.yml
+- type: WellKnown
+  url: well-known/valgo-well-known.yml
+- type: ContentSignal
+  url: well-known/valgo-robots.txt
+- type: LLMsTxt
+  url: llms/valgo-llms.txt
+- type: Packages
+  url: packages/valgo-packages.yml
+- type: SDKs
+  url: packages/valgo-packages.yml
+- type: Authentication
+  url: authentication/valgo-authentication.yml
+- type: ErrorCatalog
+  url: errors/valgo-problem-types.yml
+- type: Conventions
+  url: conventions/valgo-conventions.yml
+- type: Conformance
+  url: conformance/valgo-conformance.yml
+- type: Lifecycle
+  url: lifecycle/valgo-lifecycle.yml
+- type: ChangeLog
+  url: changelog/valgo-changelog.yml
+- type: MCPServer
+  url: mcp/valgo-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Support
+  url: https://docs.humanbaselines.com/getting-started/api-access
+- type: SignUp
+  url: https://docs.humanbaselines.com/getting-started/api-access
+- type: Website
+  url: https://valgo.ai
+- type: GitHubOrganization
+  url: https://github.com/valgorithmic
+- type: Blog
+  url: https://valgo.ai/news/
+- type: TermsOfService
+  url: https://valgo.ai/terms/
+- type: PrivacyPolicy
+  url: https://valgo.ai/privacy/
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1
