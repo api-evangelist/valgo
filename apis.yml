@@ -178,6 +178,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/valgo-humanbaselines-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/valgo-agentic-access.yml
 - type: DomainSecurity
