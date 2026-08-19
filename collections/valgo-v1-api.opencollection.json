@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Human Crash Baselines Compute v1 API",
+    "version": "0.1.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "V1 Filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/filters",
+            "headers": [
+              {
+                "name": "X-API-Key",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Discover every filter dimension, its valid options, and the default for\neach compute mode (geofence / route / depot)."
+        },
+        {
+          "info": {
+            "name": "V1 Regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/regions",
+            "headers": [
+              {
+                "name": "X-API-Key",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Counties available on this server and which compute modes each supports."
+        },
+        {
+          "info": {
+            "name": "V1 Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/manifest",
+            "headers": [
+              {
+                "name": "X-API-Key",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Dataset metadata (schema version, row counts, checksums, availability)."
+        },
+        {
+          "info": {
+            "name": "V1 Compute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/compute",
+            "headers": [
+              {
+                "name": "X-API-Key",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Geofence (S2-cell) crash rate for the given filters: county-wide N, D,\nrate + 95% CI, optional operator-weighted rate, and a per-cell breakdown.\nPass `summary_only: true` to drop the per-cell breakdown."
+        },
+        {
+          "info": {
+            "name": "V1 Compute Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/compute/batch",
+            "headers": [
+              {
+                "name": "X-API-Key",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Geofence crash rate for many (county, selections) combinations in one\nrequest — built for comparing counties side by side. Returns a per-item list\nof {county, result|null, error|null} (same order as the request), so a\nsingle failing county is reported inline instead of failing the whole call.\nDefaults to summary-only (no per-cell breakdown)."
+        },
+        {
+          "info": {
+            "name": "V1 Compute Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/compute/route",
+            "headers": [
+              {
+                "name": "X-API-Key",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Crash rate aggregated over a sequence of interstate (route, milepost)\nsegments. Counties with ROUTE mode (travis, interstates)."
+        },
+        {
+          "info": {
+            "name": "V1 Compute Depot Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/compute/depot-route",
+            "headers": [
+              {
+                "name": "X-API-Key",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Full depot-to-depot trip rate (access + interstate + access legs).\nCounties with DEPOT mode (travis, interstates)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

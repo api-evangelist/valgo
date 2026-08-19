@@ -5,12 +5,9 @@ source: openapi/valgo-humanbaselines-openapi.json
 server:
   name: valgo-humanbaselines
   transport: http
-notes: >-
-  No official hosted/remote MCP server was found for Valgo or the Human
-  Crash Baselines API (no MCP docs, no registry entry). This is a candidate
-  tool list derived one-tool-per-operation from the public /v1 OpenAPI
-  surface; auth would be the same X-API-Key documented in
-  authentication/valgo-authentication.yml.
+notes: No official hosted/remote MCP server was found for Valgo or the Human Crash Baselines API (no MCP
+  docs, no registry entry). This is a candidate tool list derived one-tool-per-operation from the public
+  /v1 OpenAPI surface; auth would be the same X-API-Key documented in authentication/valgo-authentication.yml.
 tools:
 - name: get_filters
   description: Discover every filter, valid value, and default per compute mode.
@@ -33,3 +30,9 @@ tools:
 - name: compute_depot_route_baseline
   description: Compute a crash-rate baseline for a depot-to-depot route given two lat/lon pins.
   source_operation: openapi/valgo-humanbaselines-openapi.json#v1_compute_depot_route_v1_compute_depot_route_post
+deployment:
+  mode: none
+  verified: derived
+  tools: 7
+  checked: '2026-08-12'
+  source: catalog MCP census

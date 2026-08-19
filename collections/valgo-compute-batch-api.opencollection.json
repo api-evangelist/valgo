@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Human Crash Baselines Compute Compute Batch API",
+    "version": "0.1.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Compute Batch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Post Compute Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/compute-batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Compute many (county, selections) combinations in one request. Returns a\nper-item list of {county, result|null, error|null} so a single failing\ncounty is reported inline rather than failing the whole call."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

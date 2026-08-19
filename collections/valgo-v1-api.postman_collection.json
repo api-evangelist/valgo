@@ -1,0 +1,1123 @@
+{
+  "item": [
+    {
+      "id": "40fb9ddf-f252-4ad3-8cb2-fcdc858dd588",
+      "name": "v1",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2c7ed1c6-ce12-4fb7-9524-cc547a04bf15",
+          "name": "V1 Filters",
+          "request": {
+            "name": "V1 Filters",
+            "description": {
+              "content": "Discover every filter dimension, its valid options, and the default for\neach compute mode (geofence / route / depot).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "filters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-API-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "951bac3f-5430-436d-a4e3-0659e3741edc",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "filters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"modes\": {\n    \"key_0\": [\n      {\n        \"id\": \"string\",\n        \"label\": \"string\",\n        \"affects\": \"string\",\n        \"multiselect\": false,\n        \"description\": \"string\",\n        \"options\": [\n          {\n            \"id\": \"string\",\n            \"label\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"label\": \"string\"\n          }\n        ],\n        \"default\": {}\n      },\n      {\n        \"id\": \"string\",\n        \"label\": \"string\",\n        \"affects\": \"string\",\n        \"multiselect\": false,\n        \"description\": \"string\",\n        \"options\": [\n          {\n            \"id\": \"string\",\n            \"label\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"label\": \"string\"\n          }\n        ],\n        \"default\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f344f0cc-ebe9-43b2-9030-3060975fd3bb",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "filters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa587cc0-e452-4d25-a224-61c1983c9b90",
+          "name": "V1 Regions",
+          "request": {
+            "name": "V1 Regions",
+            "description": {
+              "content": "Counties available on this server and which compute modes each supports.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "regions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-API-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07de65cc-b0be-4903-905d-2f77afc20fb3",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"regions\": [\n    {\n      \"county\": \"string\",\n      \"modes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"county\": \"string\",\n      \"modes\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"default_county\": \"travis\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70f7a400-b08d-4134-80f4-785f0a824e2f",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4946e181-53c4-4743-ac1e-9573fd8279bc",
+          "name": "V1 Manifest",
+          "request": {
+            "name": "V1 Manifest",
+            "description": {
+              "content": "Dataset metadata (schema version, row counts, checksums, availability).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "manifest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-API-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6679b58f-0316-440d-9368-ee339edc4dd6",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "manifest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 854.8124961145176,\n  \"key_1\": 6937.545983394076\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bcd975c-2225-4454-8230-1783556692eb",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "manifest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82926b7c-1b37-4466-a159-8ba04bc15757",
+          "name": "V1 Compute",
+          "request": {
+            "name": "V1 Compute",
+            "description": {
+              "content": "Geofence (S2-cell) crash rate for the given filters: county-wide N, D,\nrate + 95% CI, optional operator-weighted rate, and a per-cell breakdown.\nPass `summary_only: true` to drop the per-cell breakdown.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "compute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-API-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"county\": \"travis\",\n  \"selections\": {\n    \"outcome\": \"police_reported\",\n    \"severity\": 1,\n    \"ego_vehicle\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"unresolved_nfs\": \"marginal\",\n    \"in_transport\": \"in_transport\",\n    \"road_type\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"operator_weighting\": \"county_wide\",\n    \"multiplier_vmt\": \"calibrated\",\n    \"operator_weight\": \"<number>\",\n    \"denominator_vmt\": \"calibrated\",\n    \"tiling\": \"s2\",\n    \"under_reporting\": \"none\",\n    \"weather\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"light_condition\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"crash_year\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"summary_only\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2e96433-8875-4f3e-bb02-7cc2f470b0e1",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "compute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"county\": \"travis\",\n  \"selections\": {\n    \"outcome\": \"police_reported\",\n    \"severity\": 1,\n    \"ego_vehicle\": [\n      \"heavy_trucks\",\n      \"light_trucks\"\n    ],\n    \"unresolved_nfs\": \"marginal\",\n    \"in_transport\": \"in_transport\",\n    \"road_type\": [\n      \"collector_local\",\n      \"arterial\"\n    ],\n    \"operator_weighting\": \"county_wide\",\n    \"multiplier_vmt\": \"calibrated\",\n    \"operator_weight\": 3514.522348559043,\n    \"denominator_vmt\": \"calibrated\",\n    \"tiling\": \"s2\",\n    \"under_reporting\": \"none\",\n    \"weather\": [\n      \"dry\",\n      \"rain\"\n    ],\n    \"light_condition\": [\n      \"any\",\n      \"daylight\"\n    ],\n    \"crash_year\": [\n      6781,\n      872\n    ]\n  },\n  \"summary_only\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"N\": 2213.82551718639,\n  \"D_miles\": 7937.356155834221,\n  \"D_billions\": 2279.9447301438922,\n  \"rate\": 7955.314579771412,\n  \"rate_non_dyn\": 810.0900315349236,\n  \"rate_low\": 6815.948477560507,\n  \"rate_high\": 8098.829933852295,\n  \"rate_dyn\": 4732.219909840544,\n  \"multiplier\": 3606.933210131845,\n  \"cells\": [\n    {\n      \"s2_cell\": \"string\",\n      \"count\": 8703.810612212166,\n      \"vmt\": 6736.309934935754,\n      \"mult_contrib\": 0\n    },\n    {\n      \"s2_cell\": \"string\",\n      \"count\": 9358.826965440645,\n      \"vmt\": 7120.740584407935,\n      \"mult_contrib\": 0\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5a34c8f-f30a-4aff-a3a5-76531580bf29",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "compute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"county\": \"travis\",\n  \"selections\": {\n    \"outcome\": \"police_reported\",\n    \"severity\": 1,\n    \"ego_vehicle\": [\n      \"heavy_trucks\",\n      \"light_trucks\"\n    ],\n    \"unresolved_nfs\": \"marginal\",\n    \"in_transport\": \"in_transport\",\n    \"road_type\": [\n      \"collector_local\",\n      \"arterial\"\n    ],\n    \"operator_weighting\": \"county_wide\",\n    \"multiplier_vmt\": \"calibrated\",\n    \"operator_weight\": 3514.522348559043,\n    \"denominator_vmt\": \"calibrated\",\n    \"tiling\": \"s2\",\n    \"under_reporting\": \"none\",\n    \"weather\": [\n      \"dry\",\n      \"rain\"\n    ],\n    \"light_condition\": [\n      \"any\",\n      \"daylight\"\n    ],\n    \"crash_year\": [\n      6781,\n      872\n    ]\n  },\n  \"summary_only\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f89e7d27-8d4a-4b83-88a3-6c81fa9a502a",
+          "name": "V1 Compute Batch",
+          "request": {
+            "name": "V1 Compute Batch",
+            "description": {
+              "content": "Geofence crash rate for many (county, selections) combinations in one\nrequest — built for comparing counties side by side. Returns a per-item list\nof {county, result|null, error|null} (same order as the request), so a\nsingle failing county is reported inline instead of failing the whole call.\nDefaults to summary-only (no per-cell breakdown).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "compute",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-API-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"county\": \"travis\",\n      \"selections\": {\n        \"outcome\": \"police_reported\",\n        \"severity\": 1,\n        \"ego_vehicle\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"unresolved_nfs\": \"marginal\",\n        \"in_transport\": \"in_transport\",\n        \"road_type\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"operator_weighting\": \"county_wide\",\n        \"multiplier_vmt\": \"calibrated\",\n        \"operator_weight\": \"<number>\",\n        \"denominator_vmt\": \"calibrated\",\n        \"tiling\": \"s2\",\n        \"under_reporting\": \"none\",\n        \"weather\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"light_condition\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"crash_year\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      }\n    },\n    {\n      \"county\": \"travis\",\n      \"selections\": {\n        \"outcome\": \"police_reported\",\n        \"severity\": 1,\n        \"ego_vehicle\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"unresolved_nfs\": \"marginal\",\n        \"in_transport\": \"in_transport\",\n        \"road_type\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"operator_weighting\": \"county_wide\",\n        \"multiplier_vmt\": \"calibrated\",\n        \"operator_weight\": \"<number>\",\n        \"denominator_vmt\": \"calibrated\",\n        \"tiling\": \"s2\",\n        \"under_reporting\": \"none\",\n        \"weather\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"light_condition\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"crash_year\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      }\n    }\n  ],\n  \"summary_only\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "44e6c035-71b8-4ccd-947f-057cca83e070",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "compute",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"county\": \"travis\",\n      \"selections\": {\n        \"outcome\": \"police_reported\",\n        \"severity\": 1,\n        \"ego_vehicle\": [\n          \"motorcycles\",\n          \"motorcycles\"\n        ],\n        \"unresolved_nfs\": \"marginal\",\n        \"in_transport\": \"in_transport\",\n        \"road_type\": [\n          \"arterial\",\n          \"arterial\"\n        ],\n        \"operator_weighting\": \"county_wide\",\n        \"multiplier_vmt\": \"calibrated\",\n        \"operator_weight\": 7699.893666838168,\n        \"denominator_vmt\": \"calibrated\",\n        \"tiling\": \"s2\",\n        \"under_reporting\": \"none\",\n        \"weather\": [\n          \"fog\",\n          \"dry\"\n        ],\n        \"light_condition\": [\n          \"daylight\",\n          \"daylight\"\n        ],\n        \"crash_year\": [\n          8818,\n          7035\n        ]\n      }\n    },\n    {\n      \"county\": \"travis\",\n      \"selections\": {\n        \"outcome\": \"police_reported\",\n        \"severity\": 1,\n        \"ego_vehicle\": [\n          \"other\",\n          \"other\"\n        ],\n        \"unresolved_nfs\": \"marginal\",\n        \"in_transport\": \"in_transport\",\n        \"road_type\": [\n          \"interstate\",\n          \"interstate\"\n        ],\n        \"operator_weighting\": \"county_wide\",\n        \"multiplier_vmt\": \"calibrated\",\n        \"operator_weight\": 4769.017215686609,\n        \"denominator_vmt\": \"calibrated\",\n        \"tiling\": \"s2\",\n        \"under_reporting\": \"none\",\n        \"weather\": [\n          \"any\",\n          \"fog\"\n        ],\n        \"light_condition\": [\n          \"daylight\",\n          \"dawn_dusk\"\n        ],\n        \"crash_year\": [\n          5061,\n          8338\n        ]\n      }\n    }\n  ],\n  \"summary_only\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"county\": \"string\",\n      \"result\": {\n        \"N\": 5161.696458782056,\n        \"D_miles\": 9143.07390909481,\n        \"D_billions\": 233.125691043371,\n        \"rate\": 9514.190461468115,\n        \"rate_non_dyn\": 2189.9996465276718,\n        \"rate_low\": 4782.436736443721,\n        \"rate_high\": 9938.734981640837,\n        \"rate_dyn\": 2950.040262532331,\n        \"multiplier\": 1362.0381028950123,\n        \"cells\": [\n          {\n            \"s2_cell\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"count\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"vmt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mult_contrib\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"s2_cell\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"count\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"vmt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mult_contrib\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"error\": \"string\"\n    },\n    {\n      \"county\": \"string\",\n      \"result\": {\n        \"N\": 4391.0669470969,\n        \"D_miles\": 7908.754133128905,\n        \"D_billions\": 4888.160871218469,\n        \"rate\": 3078.315173849001,\n        \"rate_non_dyn\": 3286.5937564183077,\n        \"rate_low\": 352.43538880117,\n        \"rate_high\": 1984.994532272798,\n        \"rate_dyn\": 955.004603667845,\n        \"multiplier\": 3248.1355607833593,\n        \"cells\": [\n          {\n            \"s2_cell\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"count\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"vmt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mult_contrib\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"s2_cell\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"count\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"vmt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mult_contrib\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"error\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "531fdcef-907d-43fb-99d7-bebc62e3e164",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "compute",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"county\": \"travis\",\n      \"selections\": {\n        \"outcome\": \"police_reported\",\n        \"severity\": 1,\n        \"ego_vehicle\": [\n          \"motorcycles\",\n          \"motorcycles\"\n        ],\n        \"unresolved_nfs\": \"marginal\",\n        \"in_transport\": \"in_transport\",\n        \"road_type\": [\n          \"arterial\",\n          \"arterial\"\n        ],\n        \"operator_weighting\": \"county_wide\",\n        \"multiplier_vmt\": \"calibrated\",\n        \"operator_weight\": 7699.893666838168,\n        \"denominator_vmt\": \"calibrated\",\n        \"tiling\": \"s2\",\n        \"under_reporting\": \"none\",\n        \"weather\": [\n          \"fog\",\n          \"dry\"\n        ],\n        \"light_condition\": [\n          \"daylight\",\n          \"daylight\"\n        ],\n        \"crash_year\": [\n          8818,\n          7035\n        ]\n      }\n    },\n    {\n      \"county\": \"travis\",\n      \"selections\": {\n        \"outcome\": \"police_reported\",\n        \"severity\": 1,\n        \"ego_vehicle\": [\n          \"other\",\n          \"other\"\n        ],\n        \"unresolved_nfs\": \"marginal\",\n        \"in_transport\": \"in_transport\",\n        \"road_type\": [\n          \"interstate\",\n          \"interstate\"\n        ],\n        \"operator_weighting\": \"county_wide\",\n        \"multiplier_vmt\": \"calibrated\",\n        \"operator_weight\": 4769.017215686609,\n        \"denominator_vmt\": \"calibrated\",\n        \"tiling\": \"s2\",\n        \"under_reporting\": \"none\",\n        \"weather\": [\n          \"any\",\n          \"fog\"\n        ],\n        \"light_condition\": [\n          \"daylight\",\n          \"dawn_dusk\"\n        ],\n        \"crash_year\": [\n          5061,\n          8338\n        ]\n      }\n    }\n  ],\n  \"summary_only\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c855b1ab-6326-429a-b029-39cacf379d93",
+          "name": "V1 Compute Route",
+          "request": {
+            "name": "V1 Compute Route",
+            "description": {
+              "content": "Crash rate aggregated over a sequence of interstate (route, milepost)\nsegments. Counties with ROUTE mode (travis, interstates).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "compute",
+                "route"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-API-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"segment_ids\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"county\": \"travis\",\n  \"selections\": {\n    \"outcome\": \"police_reported\",\n    \"severity\": 1,\n    \"ego_vehicle\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"unresolved_nfs\": \"marginal\",\n    \"in_transport\": \"in_transport\",\n    \"weather\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"light_condition\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"driver_impairment\": \"any\",\n    \"under_reporting\": \"none\",\n    \"ci_method\": \"fay_feuer\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9c7b0f75-fbc4-4f25-a108-317b4a8ac9a3",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "compute",
+                    "route"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"segment_ids\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"county\": \"travis\",\n  \"selections\": {\n    \"outcome\": \"police_reported\",\n    \"severity\": 1,\n    \"ego_vehicle\": [\n      \"cars\",\n      \"light_trucks\"\n    ],\n    \"unresolved_nfs\": \"marginal\",\n    \"in_transport\": \"in_transport\",\n    \"weather\": [\n      \"fog\",\n      \"dry\"\n    ],\n    \"light_condition\": [\n      \"dawn_dusk\",\n      \"dark\"\n    ],\n    \"driver_impairment\": \"any\",\n    \"under_reporting\": \"none\",\n    \"ci_method\": \"fay_feuer\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"N\": 668.2173043358664,\n  \"trip_miles\": 8296.998081281246,\n  \"rate\": 2987.768953203839,\n  \"rate_low\": 6139.726937669157,\n  \"rate_high\": 6183.037130863271,\n  \"variance\": 6149.871691770085,\n  \"segments\": [\n    {\n      \"route\": \"string\",\n      \"milepost\": 1699,\n      \"count\": 4831.91892200373,\n      \"vmt\": 642.4617708314706,\n      \"length_mi\": 7887.011328646403\n    },\n    {\n      \"route\": \"string\",\n      \"milepost\": 7531,\n      \"count\": 3021.652596129901,\n      \"vmt\": 806.4233002744293,\n      \"length_mi\": 8808.028696702198\n    }\n  ],\n  \"exposure_sources\": [\n    \"string\",\n    \"string\"\n  ],\n  \"crash_sources\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0197fd03-b612-434f-a1aa-5f4920c159f8",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "compute",
+                    "route"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"segment_ids\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"county\": \"travis\",\n  \"selections\": {\n    \"outcome\": \"police_reported\",\n    \"severity\": 1,\n    \"ego_vehicle\": [\n      \"cars\",\n      \"light_trucks\"\n    ],\n    \"unresolved_nfs\": \"marginal\",\n    \"in_transport\": \"in_transport\",\n    \"weather\": [\n      \"fog\",\n      \"dry\"\n    ],\n    \"light_condition\": [\n      \"dawn_dusk\",\n      \"dark\"\n    ],\n    \"driver_impairment\": \"any\",\n    \"under_reporting\": \"none\",\n    \"ci_method\": \"fay_feuer\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "379555d8-00cf-4498-8b4c-6f415f72bdd4",
+          "name": "V1 Compute Depot Route",
+          "request": {
+            "name": "V1 Compute Depot Route",
+            "description": {
+              "content": "Full depot-to-depot trip rate (access + interstate + access legs).\nCounties with DEPOT mode (travis, interstates).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "compute",
+                "depot-route"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-API-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"depot_a\": {\n    \"lat\": \"<number>\",\n    \"lon\": \"<number>\"\n  },\n  \"depot_b\": {\n    \"lat\": \"<number>\",\n    \"lon\": \"<number>\"\n  },\n  \"county\": \"travis\",\n  \"selections\": {\n    \"outcome\": \"police_reported\",\n    \"severity\": 1,\n    \"ego_vehicle\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"unresolved_nfs\": \"marginal\",\n    \"in_transport\": \"in_transport\",\n    \"weather\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"light_condition\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"driver_impairment\": \"any\",\n    \"under_reporting\": \"none\",\n    \"ci_method\": \"empirical_bayes\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5dbf03ac-cf92-43e7-aa5e-33a0ca2958ee",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "compute",
+                    "depot-route"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"depot_a\": {\n    \"lat\": 803.6381510459545,\n    \"lon\": 2629.007563135346\n  },\n  \"depot_b\": {\n    \"lat\": 7379.0380872527785,\n    \"lon\": 9106.455625622635\n  },\n  \"county\": \"travis\",\n  \"selections\": {\n    \"outcome\": \"police_reported\",\n    \"severity\": 1,\n    \"ego_vehicle\": [\n      \"other\",\n      \"cars\"\n    ],\n    \"unresolved_nfs\": \"marginal\",\n    \"in_transport\": \"in_transport\",\n    \"weather\": [\n      \"dry\",\n      \"rain\"\n    ],\n    \"light_condition\": [\n      \"dark\",\n      \"any\"\n    ],\n    \"driver_impairment\": \"any\",\n    \"under_reporting\": \"none\",\n    \"ci_method\": \"empirical_bayes\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5c8fbca-f323-4e6c-8571-ae8c356d08a7",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "compute",
+                    "depot-route"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "authorization",
+                    "value": "string",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"depot_a\": {\n    \"lat\": 803.6381510459545,\n    \"lon\": 2629.007563135346\n  },\n  \"depot_b\": {\n    \"lat\": 7379.0380872527785,\n    \"lon\": 9106.455625622635\n  },\n  \"county\": \"travis\",\n  \"selections\": {\n    \"outcome\": \"police_reported\",\n    \"severity\": 1,\n    \"ego_vehicle\": [\n      \"other\",\n      \"cars\"\n    ],\n    \"unresolved_nfs\": \"marginal\",\n    \"in_transport\": \"in_transport\",\n    \"weather\": [\n      \"dry\",\n      \"rain\"\n    ],\n    \"light_condition\": [\n      \"dark\",\n      \"any\"\n    ],\n    \"driver_impairment\": \"any\",\n    \"under_reporting\": \"none\",\n    \"ci_method\": \"empirical_bayes\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9f012167-a999-4041-878a-d45fcd968b1c",
+    "name": "Human Crash Baselines Compute v1 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Compute human crash-rate baselines over filterable crash and exposure data. The versioned, API-key-authenticated public surface lives under `/v1`; call `GET /v1/filters` to discover every filter and valid value. Send your key via the `X-API-Key` header.",
+      "type": "text/plain"
+    }
+  }
+}

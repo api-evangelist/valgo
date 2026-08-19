@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Human Crash Baselines Compute Request Api Key API",
+    "version": "0.1.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Request Api Key",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request Api Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/request-api-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mint an API key for the given email, email a copy, and return it so the\nweb form can show it immediately. Unauthenticated by design — this is how\nyou GET a key — but rate-limited per email and per IP to curb abuse."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,166 @@
+{
+  "item": [
+    {
+      "id": "d3e23c21-32bd-4ffb-ad5f-372622a021d0",
+      "name": "Compute Batch",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc7e4aac-542d-43fd-9657-a7b8062b7038",
+          "name": "Post Compute Batch",
+          "request": {
+            "name": "Post Compute Batch",
+            "description": {
+              "content": "Compute many (county, selections) combinations in one request. Returns a\nper-item list of {county, result|null, error|null} so a single failing\ncounty is reported inline rather than failing the whole call.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compute-batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"county\": \"travis\",\n      \"selections\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"cell_filter\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"county\": \"travis\",\n      \"selections\": {\n        \"key_0\": \"string\",\n        \"key_1\": 8651,\n        \"key_2\": true\n      },\n      \"cell_filter\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"summary_only\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "113f81e9-ce9a-47c7-a6f5-f9fbfd61c874",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compute-batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"county\": \"travis\",\n      \"selections\": {\n        \"key_0\": 7342.9513691290595,\n        \"key_1\": 3354.2785169471877\n      },\n      \"cell_filter\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"county\": \"travis\",\n      \"selections\": {\n        \"key_0\": false,\n        \"key_1\": true,\n        \"key_2\": 5618\n      },\n      \"cell_filter\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"summary_only\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": \"string\",\n  \"key_2\": 9709.885161191036\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "783c5da3-9c85-4b37-9969-ebf02a3db0ae",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compute-batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"county\": \"travis\",\n      \"selections\": {\n        \"key_0\": 7342.9513691290595,\n        \"key_1\": 3354.2785169471877\n      },\n      \"cell_filter\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"county\": \"travis\",\n      \"selections\": {\n        \"key_0\": false,\n        \"key_1\": true,\n        \"key_2\": 5618\n      },\n      \"cell_filter\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"summary_only\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "547dd5d2-3d51-4822-9d8f-da6e23202eb2",
+    "name": "Human Crash Baselines Compute Compute Batch API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Compute human crash-rate baselines over filterable crash and exposure data. The versioned, API-key-authenticated public surface lives under `/v1`; call `GET /v1/filters` to discover every filter and valid value. Send your key via the `X-API-Key` header.",
+      "type": "text/plain"
+    }
+  }
+}

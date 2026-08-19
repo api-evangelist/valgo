@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Human Crash Baselines Compute Compute Depot Route API",
+    "version": "0.1.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Compute Depot Route",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Post Compute Depot Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/compute-depot-route",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post Compute Depot Route"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
