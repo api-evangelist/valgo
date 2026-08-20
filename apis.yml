@@ -130,6 +130,8 @@ apis:
   humanURL: https://docs.humanbaselines.com
   baseURL: https://humanbaselines.com/v1
   tags:
+  - Manifests
+  tags_raw:
   - Manifest
   properties:
   - type: OpenAPI
