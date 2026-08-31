@@ -142,7 +142,7 @@ apis:
   humanURL: https://docs.humanbaselines.com
   baseURL: https://humanbaselines.com/v1
   tags:
-  - Manifests
+  - Manifest
   tags_raw:
   - Manifest
   properties:
