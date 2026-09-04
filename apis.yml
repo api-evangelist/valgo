@@ -26,15 +26,16 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: unknown
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Unknown
+  confidence: low
   source:
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://valgo.ai/media/valgo-social-media.png
 x-type: company
@@ -220,8 +221,9 @@ common:
   url: lifecycle/valgo-lifecycle.yml
 - type: ChangeLog
   url: changelog/valgo-changelog.yml
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/valgo-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: AgentSkill
   url: skills/_index.yml
 - type: Support
