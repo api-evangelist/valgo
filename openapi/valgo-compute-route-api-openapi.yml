@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Human Crash Baselines Compute Compute Route API
+  title: Human Crash Baselines Compute Route API
   description: Compute human crash-rate baselines over filterable crash and exposure data. The versioned, API-key-authenticated public surface lives under `/v1`; call `GET /v1/filters` to discover every filter and valid value. Send your key via the `X-API-Key` header.
   version: 0.1.3
 tags:
@@ -35,6 +35,15 @@ paths:
       - Compute Route
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -61,15 +70,6 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ComputeRouteRequest:
       properties:
         county:

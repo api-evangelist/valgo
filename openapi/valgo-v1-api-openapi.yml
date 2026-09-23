@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Human Crash Baselines Compute v1 API
+  title: Human Crash Baselines V1 API
   description: Compute human crash-rate baselines over filterable crash and exposure data. The versioned, API-key-authenticated public surface lives under `/v1`; call `GET /v1/filters` to discover every filter and valid value. Send your key via the `X-API-Key` header.
   version: 0.1.3
 tags:
@@ -311,6 +311,62 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    VehicleClass:
+      type: string
+      enum:
+      - cars
+      - light_trucks
+      - heavy_trucks
+      - motorcycles
+      - buses
+      - other
+      title: VehicleClass
+    PerCellResult:
+      properties:
+        s2_cell:
+          type: string
+          title: S2 Cell
+        count:
+          type: number
+          title: Count
+        vmt:
+          type: number
+          title: Vmt
+        mult_contrib:
+          type: number
+          title: Mult Contrib
+          default: 0.0
+      additionalProperties: true
+      type: object
+      required:
+      - s2_cell
+      - count
+      - vmt
+      title: PerCellResult
+    BatchItemResult:
+      properties:
+        county:
+          type: string
+          title: County
+        result:
+          anyOf:
+          - $ref: '#/components/schemas/ComputeResult'
+          - type: 'null'
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      additionalProperties: true
+      type: object
+      required:
+      - county
+      title: BatchItemResult
+      description: 'One entry of a batch compute response. Exactly one of `result` / `error`
+
+        is set: `result` on success, `error` (a message) when that county''s compute
+
+        failed (so one bad county doesn''t sink the whole batch).'
     ValidationError:
       properties:
         loc:
@@ -337,12 +393,126 @@ components:
       - msg
       - type
       title: ValidationError
-    OperatorWeighting:
+    V1BatchItem:
+      properties:
+        county:
+          type: string
+          title: County
+          default: travis
+        selections:
+          $ref: '#/components/schemas/GeofenceSelections'
+      type: object
+      title: V1BatchItem
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    WeatherFilter:
       type: string
       enum:
-      - county_wide
-      - robotaxi
-      title: OperatorWeighting
+      - any
+      - dry
+      - rain
+      - fog
+      - winter_storm
+      title: WeatherFilter
+    FilterOption:
+      properties:
+        id:
+          type: string
+          title: Id
+        label:
+          type: string
+          title: Label
+      type: object
+      required:
+      - id
+      - label
+      title: FilterOption
+    ComputeResult:
+      properties:
+        N:
+          type: number
+          title: N
+        D_miles:
+          type: number
+          title: D Miles
+        D_billions:
+          type: number
+          title: D Billions
+        rate:
+          type: number
+          title: Rate
+        rate_low:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Rate Low
+        rate_high:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Rate High
+        rate_non_dyn:
+          type: number
+          title: Rate Non Dyn
+        rate_dyn:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Rate Dyn
+        multiplier:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Multiplier
+        cells:
+          items:
+            $ref: '#/components/schemas/PerCellResult'
+          type: array
+          title: Cells
+      additionalProperties: true
+      type: object
+      required:
+      - N
+      - D_miles
+      - D_billions
+      - rate
+      - rate_non_dyn
+      title: ComputeResult
+    V1BatchRequest:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/V1BatchItem'
+          type: array
+          title: Items
+          description: One (county, selections) combination per entry. Selections are per-item because a value valid in one county can be invalid in another, so the batch can't share a single selection set.
+        summary_only:
+          type: boolean
+          title: Summary Only
+          description: Batch defaults to summary-only (no per-cell breakdown), as it exists for multi-county comparison. Set false to include `cells`.
+          default: true
+      type: object
+      title: V1BatchRequest
+    DriverImpairment:
+      type: string
+      enum:
+      - any
+      - exclude_impaired
+      - impaired_only
+      title: DriverImpairment
+    InTransport:
+      type: string
+      enum:
+      - in_transport
+      - include_all
+      title: InTransport
     GeofenceSelections:
       properties:
         outcome:
@@ -438,34 +608,35 @@ components:
       type: object
       title: GeofenceSelections
       description: Filters for POST /v1/compute (S2-cell / geofence mode).
-    CiMethod:
-      type: string
-      enum:
-      - fay_feuer
-      - empirical_bayes
-      title: CiMethod
-    PerCellResult:
+    FiltersResponse:
       properties:
-        s2_cell:
-          type: string
-          title: S2 Cell
-        count:
-          type: number
-          title: Count
-        vmt:
-          type: number
-          title: Vmt
-        mult_contrib:
-          type: number
-          title: Mult Contrib
-          default: 0.0
-      additionalProperties: true
+        modes:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/FilterDef'
+            type: array
+          type: object
+          title: Modes
       type: object
       required:
-      - s2_cell
-      - count
-      - vmt
-      title: PerCellResult
+      - modes
+      title: FiltersResponse
+    Tiling:
+      type: string
+      enum:
+      - s2
+      - h3
+      title: Tiling
+    BatchComputeResult:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/BatchItemResult'
+          type: array
+          title: Results
+      type: object
+      title: BatchComputeResult
+      description: Per-item results, in the same order as the request's `items`.
     RouteComputeResult:
       properties:
         N:
@@ -514,88 +685,54 @@ components:
       - trip_miles
       - rate
       title: RouteComputeResult
-    DenominatorVmt:
+    FilterDef:
+      properties:
+        id:
+          type: string
+          title: Id
+        label:
+          type: string
+          title: Label
+        affects:
+          type: string
+          title: Affects
+        multiselect:
+          type: boolean
+          title: Multiselect
+        description:
+          type: string
+          title: Description
+        options:
+          items:
+            $ref: '#/components/schemas/FilterOption'
+          type: array
+          title: Options
+        default:
+          title: Default
+      additionalProperties: true
+      type: object
+      required:
+      - id
+      - label
+      - affects
+      - multiselect
+      - description
+      - options
+      title: FilterDef
+    DepotComputeResult:
+      properties: {}
+      additionalProperties: true
+      type: object
+      title: DepotComputeResult
+      description: 'Three-leg depot-to-depot trip. Shape mirrors engine.compute_depot_route;
+
+        left loose because it carries leg sub-objects + geometry for rendering.'
+    MultiplierVmt:
       type: string
       enum:
       - calibrated
       - hpms
-      title: DenominatorVmt
-    PerSegmentResult:
-      properties:
-        route:
-          type: string
-          title: Route
-        milepost:
-          type: integer
-          title: Milepost
-        count:
-          type: number
-          title: Count
-        vmt:
-          type: number
-          title: Vmt
-        length_mi:
-          type: number
-          title: Length Mi
-      additionalProperties: true
-      type: object
-      required:
-      - route
-      - milepost
-      - count
-      - vmt
-      - length_mi
-      title: PerSegmentResult
-    LightFilter:
-      type: string
-      enum:
-      - any
-      - daylight
-      - dawn_dusk
-      - dark
-      title: LightFilter
-    DepotPin:
-      properties:
-        lat:
-          type: number
-          title: Lat
-        lon:
-          type: number
-          title: Lon
-      type: object
-      required:
-      - lat
-      - lon
-      title: DepotPin
-    InTransport:
-      type: string
-      enum:
-      - in_transport
-      - include_all
-      title: InTransport
-    V1DepotRequest:
-      properties:
-        county:
-          type: string
-          title: County
-          default: travis
-        depot_a:
-          $ref: '#/components/schemas/DepotPin'
-        depot_b:
-          $ref: '#/components/schemas/DepotPin'
-        selections:
-          $ref: '#/components/schemas/DepotSelections'
-      type: object
-      required:
-      - depot_a
-      - depot_b
-      title: V1DepotRequest
-    Tiling:
-      type: string
-      enum:
-      - s2
-      - h3
-      title: Tiling
+      title: MultiplierVmt
     RouteSelections:
       properties:
         outcome:
@@ -654,255 +791,6 @@ components:
       type: object
       title: RouteSelections
       description: Filters for POST /v1/compute/route (interstate-segment mode).
-    RegionsResponse:
-      properties:
-        regions:
-          items:
-            $ref: '#/components/schemas/RegionInfo'
-          type: array
-          title: Regions
-        default_county:
-          type: string
-          title: Default County
-          default: travis
-      type: object
-      required:
-      - regions
-      title: RegionsResponse
-    V1ComputeRequest:
-      properties:
-        county:
-          type: string
-          title: County
-          default: travis
-        selections:
-          $ref: '#/components/schemas/GeofenceSelections'
-        summary_only:
-          type: boolean
-          title: Summary Only
-          description: Drop the per-cell `cells` breakdown (returned as []), keeping just the county-wide scalars. Cuts the bulk of the response for callers that don't need the map heatmap.
-          default: false
-      type: object
-      title: V1ComputeRequest
-    Outcome:
-      type: string
-      enum:
-      - police_reported
-      - observed_any_injury
-      - airbag
-      - ego_airbag
-      - ka
-      - fatal
-      title: Outcome
-    V1RouteRequest:
-      properties:
-        county:
-          type: string
-          title: County
-          default: travis
-        segment_ids:
-          items:
-            prefixItems:
-            - type: string
-            - type: integer
-            type: array
-            maxItems: 2
-            minItems: 2
-          type: array
-          title: Segment Ids
-          description: Ordered [route, milepost] pairs, e.g. [["I-35", 250], ["I-35", 251]].
-        selections:
-          $ref: '#/components/schemas/RouteSelections'
-      type: object
-      required:
-      - segment_ids
-      title: V1RouteRequest
-    V1BatchItem:
-      properties:
-        county:
-          type: string
-          title: County
-          default: travis
-        selections:
-          $ref: '#/components/schemas/GeofenceSelections'
-      type: object
-      title: V1BatchItem
-    VehicleClass:
-      type: string
-      enum:
-      - cars
-      - light_trucks
-      - heavy_trucks
-      - motorcycles
-      - buses
-      - other
-      title: VehicleClass
-    BatchComputeResult:
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/BatchItemResult'
-          type: array
-          title: Results
-      type: object
-      title: BatchComputeResult
-      description: Per-item results, in the same order as the request's `items`.
-    ComputeResult:
-      properties:
-        N:
-          type: number
-          title: N
-        D_miles:
-          type: number
-          title: D Miles
-        D_billions:
-          type: number
-          title: D Billions
-        rate:
-          type: number
-          title: Rate
-        rate_low:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Rate Low
-        rate_high:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Rate High
-        rate_non_dyn:
-          type: number
-          title: Rate Non Dyn
-        rate_dyn:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Rate Dyn
-        multiplier:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Multiplier
-        cells:
-          items:
-            $ref: '#/components/schemas/PerCellResult'
-          type: array
-          title: Cells
-      additionalProperties: true
-      type: object
-      required:
-      - N
-      - D_miles
-      - D_billions
-      - rate
-      - rate_non_dyn
-      title: ComputeResult
-    V1BatchRequest:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/V1BatchItem'
-          type: array
-          title: Items
-          description: One (county, selections) combination per entry. Selections are per-item because a value valid in one county can be invalid in another, so the batch can't share a single selection set.
-        summary_only:
-          type: boolean
-          title: Summary Only
-          description: Batch defaults to summary-only (no per-cell breakdown), as it exists for multi-county comparison. Set false to include `cells`.
-          default: true
-      type: object
-      title: V1BatchRequest
-    UnderReporting:
-      type: string
-      enum:
-      - none
-      - adjusted
-      title: UnderReporting
-    Tier3Mode:
-      type: string
-      enum:
-      - marginal
-      - none
-      - all
-      title: Tier3Mode
-    DriverImpairment:
-      type: string
-      enum:
-      - any
-      - exclude_impaired
-      - impaired_only
-      title: DriverImpairment
-    FiltersResponse:
-      properties:
-        modes:
-          additionalProperties:
-            items:
-              $ref: '#/components/schemas/FilterDef'
-            type: array
-          type: object
-          title: Modes
-      type: object
-      required:
-      - modes
-      title: FiltersResponse
-    RoadGroup:
-      type: string
-      enum:
-      - interstate
-      - other_freeway
-      - arterial
-      - collector_local
-      title: RoadGroup
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    FilterDef:
-      properties:
-        id:
-          type: string
-          title: Id
-        label:
-          type: string
-          title: Label
-        affects:
-          type: string
-          title: Affects
-        multiselect:
-          type: boolean
-          title: Multiselect
-        description:
-          type: string
-          title: Description
-        options:
-          items:
-            $ref: '#/components/schemas/FilterOption'
-          type: array
-          title: Options
-        default:
-          title: Default
-      additionalProperties: true
-      type: object
-      required:
-      - id
-      - label
-      - affects
-      - multiselect
-      - description
-      - options
-      title: FilterDef
-    MultiplierVmt:
-      type: string
-      enum:
-      - calibrated
-      - hpms
-      title: MultiplierVmt
     DepotSelections:
       properties:
         outcome:
@@ -976,57 +864,169 @@ components:
       - county
       - modes
       title: RegionInfo
-    BatchItemResult:
+    DenominatorVmt:
+      type: string
+      enum:
+      - calibrated
+      - hpms
+      title: DenominatorVmt
+    OperatorWeighting:
+      type: string
+      enum:
+      - county_wide
+      - robotaxi
+      title: OperatorWeighting
+    RoadGroup:
+      type: string
+      enum:
+      - interstate
+      - other_freeway
+      - arterial
+      - collector_local
+      title: RoadGroup
+    LightFilter:
+      type: string
+      enum:
+      - any
+      - daylight
+      - dawn_dusk
+      - dark
+      title: LightFilter
+    Tier3Mode:
+      type: string
+      enum:
+      - marginal
+      - none
+      - all
+      title: Tier3Mode
+    UnderReporting:
+      type: string
+      enum:
+      - none
+      - adjusted
+      title: UnderReporting
+    Outcome:
+      type: string
+      enum:
+      - police_reported
+      - observed_any_injury
+      - airbag
+      - ego_airbag
+      - ka
+      - fatal
+      title: Outcome
+    V1DepotRequest:
       properties:
         county:
           type: string
           title: County
-        result:
-          anyOf:
-          - $ref: '#/components/schemas/ComputeResult'
-          - type: 'null'
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-      additionalProperties: true
+          default: travis
+        depot_a:
+          $ref: '#/components/schemas/DepotPin'
+        depot_b:
+          $ref: '#/components/schemas/DepotPin'
+        selections:
+          $ref: '#/components/schemas/DepotSelections'
       type: object
       required:
-      - county
-      title: BatchItemResult
-      description: 'One entry of a batch compute response. Exactly one of `result` / `error`
-
-        is set: `result` on success, `error` (a message) when that county''s compute
-
-        failed (so one bad county doesn''t sink the whole batch).'
-    DepotComputeResult:
-      properties: {}
-      additionalProperties: true
-      type: object
-      title: DepotComputeResult
-      description: 'Three-leg depot-to-depot trip. Shape mirrors engine.compute_depot_route;
-
-        left loose because it carries leg sub-objects + geometry for rendering.'
-    FilterOption:
+      - depot_a
+      - depot_b
+      title: V1DepotRequest
+    DepotPin:
       properties:
-        id:
-          type: string
-          title: Id
-        label:
-          type: string
-          title: Label
+        lat:
+          type: number
+          title: Lat
+        lon:
+          type: number
+          title: Lon
       type: object
       required:
-      - id
-      - label
-      title: FilterOption
-    WeatherFilter:
+      - lat
+      - lon
+      title: DepotPin
+    PerSegmentResult:
+      properties:
+        route:
+          type: string
+          title: Route
+        milepost:
+          type: integer
+          title: Milepost
+        count:
+          type: number
+          title: Count
+        vmt:
+          type: number
+          title: Vmt
+        length_mi:
+          type: number
+          title: Length Mi
+      additionalProperties: true
+      type: object
+      required:
+      - route
+      - milepost
+      - count
+      - vmt
+      - length_mi
+      title: PerSegmentResult
+    V1RouteRequest:
+      properties:
+        county:
+          type: string
+          title: County
+          default: travis
+        segment_ids:
+          items:
+            prefixItems:
+            - type: string
+            - type: integer
+            type: array
+            maxItems: 2
+            minItems: 2
+          type: array
+          title: Segment Ids
+          description: Ordered [route, milepost] pairs, e.g. [["I-35", 250], ["I-35", 251]].
+        selections:
+          $ref: '#/components/schemas/RouteSelections'
+      type: object
+      required:
+      - segment_ids
+      title: V1RouteRequest
+    RegionsResponse:
+      properties:
+        regions:
+          items:
+            $ref: '#/components/schemas/RegionInfo'
+          type: array
+          title: Regions
+        default_county:
+          type: string
+          title: Default County
+          default: travis
+      type: object
+      required:
+      - regions
+      title: RegionsResponse
+    V1ComputeRequest:
+      properties:
+        county:
+          type: string
+          title: County
+          default: travis
+        selections:
+          $ref: '#/components/schemas/GeofenceSelections'
+        summary_only:
+          type: boolean
+          title: Summary Only
+          description: Drop the per-cell `cells` breakdown (returned as []), keeping just the county-wide scalars. Cuts the bulk of the response for callers that don't need the map heatmap.
+          default: false
+      type: object
+      title: V1ComputeRequest
+    CiMethod:
       type: string
       enum:
-      - any
-      - dry
-      - rain
-      - fog
-      - winter_storm
-      title: WeatherFilter
+      - fay_feuer
+      - empirical_bayes
+      title: CiMethod

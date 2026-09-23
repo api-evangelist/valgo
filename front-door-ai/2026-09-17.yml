@@ -1,0 +1,32 @@
+# Front Door AI Index — valgo — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: valgo
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: valgo.ai
+  final_host: valgo.ai
+  ownership: own
+  owner: valgo
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 30
+  host_score: 30
+  density: 12.68
+  words: 2366
+  tiers:
+    agentic: 7
+    core: 21
+    model: 2
+  ambiguous: 0
+  top_terms:
+    neural network: 11
+    inference: 5
+    machine learning: 5
+    AI: 3
+    LLMs: 2
+    embedding: 2
+    diffusion model: 1
+    transformer: 1

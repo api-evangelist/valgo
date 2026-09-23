@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Human Crash Baselines Compute API
   description: Compute human crash-rate baselines over filterable crash and exposure data. The versioned, API-key-authenticated public surface lives under `/v1`; call `GET /v1/filters` to discover every filter and valid value. Send your key via the `X-API-Key` header.
@@ -35,29 +35,6 @@ paths:
       - Compute
 components:
   schemas:
-    ComputeRequest:
-      properties:
-        county:
-          type: string
-          title: County
-          default: travis
-        selections:
-          additionalProperties: true
-          type: object
-          title: Selections
-        cell_filter:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Cell Filter
-        summary_only:
-          type: boolean
-          title: Summary Only
-          default: false
-      type: object
-      title: ComputeRequest
     HTTPValidationError:
       properties:
         detail:
@@ -93,3 +70,26 @@ components:
       - msg
       - type
       title: ValidationError
+    ComputeRequest:
+      properties:
+        county:
+          type: string
+          title: County
+          default: travis
+        selections:
+          additionalProperties: true
+          type: object
+          title: Selections
+        cell_filter:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Cell Filter
+        summary_only:
+          type: boolean
+          title: Summary Only
+          default: false
+      type: object
+      title: ComputeRequest

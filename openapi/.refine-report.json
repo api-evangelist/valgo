@@ -1,14 +1,7 @@
 {
   "provider": "valgo",
   "sources": [
-    "valgo-compute-api-openapi.yml",
-    "valgo-compute-batch-api-openapi.yml",
-    "valgo-compute-depot-route-api-openapi.yml",
-    "valgo-compute-route-api-openapi.yml",
-    "valgo-health-api-openapi.yml",
-    "valgo-manifest-api-openapi.yml",
-    "valgo-request-api-key-api-openapi.yml",
-    "valgo-v1-api-openapi.yml"
+    "_original/valgo-humanbaselines-openapi.json"
   ],
   "outputs": [
     "valgo-compute-api-openapi.yml",
@@ -23,6 +16,34 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "valgo-humanbaselines-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "valgo-humanbaselines-openapi.json: tagged paths GET /health -> Health",
+    "valgo-humanbaselines-openapi.json: tagged paths GET /manifest -> Manifest",
+    "valgo-humanbaselines-openapi.json: tagged paths POST /compute -> Compute",
+    "valgo-humanbaselines-openapi.json: tagged paths POST /compute-batch -> Compute Batch",
+    "valgo-humanbaselines-openapi.json: tagged paths POST /compute-route -> Compute Route",
+    "valgo-humanbaselines-openapi.json: tagged paths POST /compute-depot-route -> Compute Depot Route",
+    "valgo-humanbaselines-openapi.json: tagged paths POST /request-api-key -> Request Api Key",
+    "valgo-humanbaselines-openapi.json: declared missing tag: Compute",
+    "valgo-humanbaselines-openapi.json: declared missing tag: Compute Batch",
+    "valgo-humanbaselines-openapi.json: declared missing tag: Compute Depot Route",
+    "valgo-humanbaselines-openapi.json: declared missing tag: Compute Route",
+    "valgo-humanbaselines-openapi.json: declared missing tag: Health",
+    "valgo-humanbaselines-openapi.json: declared missing tag: Manifest",
+    "valgo-humanbaselines-openapi.json: declared missing tag: Request Api Key",
+    "valgo-humanbaselines-openapi.json: declared missing tag: v1",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "valgo-compute-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "valgo-compute-batch-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "valgo-compute-depot-route-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "valgo-compute-route-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "valgo-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "valgo-manifest-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "valgo-request-api-key-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "valgo-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
