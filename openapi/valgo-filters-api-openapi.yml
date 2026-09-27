@@ -1,33 +1,20 @@
 openapi: 3.2.0
 info:
-  title: Human Crash Baselines Manifest API
+  title: Human Crash Baselines Filters API
   description: Compute human crash-rate baselines over filterable crash and exposure data. The versioned, API-key-authenticated public surface lives under `/v1`; call `GET /v1/filters` to discover every filter and valid value. Send your key via the `X-API-Key` header.
   version: 0.1.3
 tags:
-- name: Manifest
+- name: Filters
 paths:
-  /manifest:
-    get:
-      summary: Get Manifest
-      operationId: get_manifest_manifest_get
-      responses:
-        '200':
-          description: Successful Response
-          content:
-            application/json:
-              schema:
-                additionalProperties: true
-                type: object
-                title: Response Get Manifest Manifest Get
-      tags:
-      - Manifest
-  /v1/manifest:
+  /v1/filters:
     get:
       tags:
-      - Manifest
-      summary: V1 Manifest
-      description: Dataset metadata (schema version, row counts, checksums, availability).
-      operationId: v1_manifest_v1_manifest_get
+      - Filters
+      summary: V1 Filters
+      description: 'Discover every filter dimension, its valid options, and the default for
+
+        each compute mode (geofence / route / depot).'
+      operationId: v1_filters_v1_filters_get
       parameters:
       - name: X-API-Key
         in: header
@@ -51,9 +38,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
-                title: Response V1 Manifest V1 Manifest Get
+                $ref: '#/components/schemas/FiltersResponse'
         '422':
           description: Validation Error
           content:
@@ -71,6 +56,66 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    FilterDef:
+      properties:
+        id:
+          type: string
+          title: Id
+        label:
+          type: string
+          title: Label
+        affects:
+          type: string
+          title: Affects
+        multiselect:
+          type: boolean
+          title: Multiselect
+        description:
+          type: string
+          title: Description
+        options:
+          items:
+            $ref: '#/components/schemas/FilterOption'
+          type: array
+          title: Options
+        default:
+          title: Default
+      additionalProperties: true
+      type: object
+      required:
+      - id
+      - label
+      - affects
+      - multiselect
+      - description
+      - options
+      title: FilterDef
+    FilterOption:
+      properties:
+        id:
+          type: string
+          title: Id
+        label:
+          type: string
+          title: Label
+      type: object
+      required:
+      - id
+      - label
+      title: FilterOption
+    FiltersResponse:
+      properties:
+        modes:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/FilterDef'
+            type: array
+          type: object
+          title: Modes
+      type: object
+      required:
+      - modes
+      title: FiltersResponse
     ValidationError:
       properties:
         loc:

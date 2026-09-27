@@ -44,6 +44,30 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    ComputeRouteRequest:
+      properties:
+        county:
+          type: string
+          title: County
+          default: travis
+        segment_ids:
+          items:
+            prefixItems:
+            - type: string
+            - type: integer
+            type: array
+            maxItems: 2
+            minItems: 2
+          type: array
+          title: Segment Ids
+        selections:
+          additionalProperties: true
+          type: object
+          title: Selections
+      type: object
+      required:
+      - segment_ids
+      title: ComputeRouteRequest
     ValidationError:
       properties:
         loc:
@@ -70,27 +94,3 @@ components:
       - msg
       - type
       title: ValidationError
-    ComputeRouteRequest:
-      properties:
-        county:
-          type: string
-          title: County
-          default: travis
-        segment_ids:
-          items:
-            prefixItems:
-            - type: string
-            - type: integer
-            type: array
-            maxItems: 2
-            minItems: 2
-          type: array
-          title: Segment Ids
-        selections:
-          additionalProperties: true
-          type: object
-          title: Selections
-      type: object
-      required:
-      - segment_ids
-      title: ComputeRouteRequest

@@ -33,17 +33,322 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Compute
+  /v1/compute:
+    post:
+      tags:
+      - Compute
+      summary: V1 Compute
+      description: 'Geofence (S2-cell) crash rate for the given filters: county-wide N, D,
+
+        rate + 95% CI, optional operator-weighted rate, and a per-cell breakdown.
+
+        Pass `summary_only: true` to drop the per-cell breakdown.'
+      operationId: v1_compute_v1_compute_post
+      parameters:
+      - name: X-API-Key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Api-Key
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1ComputeRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComputeResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/compute/batch:
+    post:
+      tags:
+      - Compute
+      summary: V1 Compute Batch
+      description: 'Geofence crash rate for many (county, selections) combinations in one
+
+        request — built for comparing counties side by side. Returns a per-item list
+
+        of {county, result|null, error|null} (same order as the request), so a
+
+        single failing county is reported inline instead of failing the whole call.
+
+        Defaults to summary-only (no per-cell breakdown).'
+      operationId: v1_compute_batch_v1_compute_batch_post
+      parameters:
+      - name: X-API-Key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Api-Key
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1BatchRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchComputeResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/compute/route:
+    post:
+      tags:
+      - Compute
+      summary: V1 Compute Route
+      description: 'Crash rate aggregated over a sequence of interstate (route, milepost)
+
+        segments. Counties with ROUTE mode (travis, interstates).'
+      operationId: v1_compute_route_v1_compute_route_post
+      parameters:
+      - name: X-API-Key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Api-Key
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1RouteRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteComputeResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/compute/depot-route:
+    post:
+      tags:
+      - Compute
+      summary: V1 Compute Depot Route
+      description: 'Full depot-to-depot trip rate (access + interstate + access legs).
+
+        Counties with DEPOT mode (travis, interstates).'
+      operationId: v1_compute_depot_route_v1_compute_depot_route_post
+      parameters:
+      - name: X-API-Key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Api-Key
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1DepotRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepotComputeResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    HTTPValidationError:
+    DepotPin:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        lat:
+          type: number
+          title: Lat
+        lon:
+          type: number
+          title: Lon
       type: object
-      title: HTTPValidationError
+      required:
+      - lat
+      - lon
+      title: DepotPin
+    RouteSelections:
+      properties:
+        outcome:
+          $ref: '#/components/schemas/Outcome'
+          default: police_reported
+        severity:
+          type: integer
+          maximum: 7.0
+          minimum: 1.0
+          title: Severity
+          default: 1
+        ego_vehicle:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/VehicleClass'
+            type: array
+          - $ref: '#/components/schemas/VehicleClass'
+          title: Ego Vehicle
+          default:
+          - combination
+        unresolved_nfs:
+          $ref: '#/components/schemas/Tier3Mode'
+          default: marginal
+        in_transport:
+          $ref: '#/components/schemas/InTransport'
+          default: in_transport
+        weather:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/WeatherFilter'
+            type: array
+          - $ref: '#/components/schemas/WeatherFilter'
+          title: Weather
+          default:
+          - dry
+          - rain
+          - fog
+        light_condition:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LightFilter'
+            type: array
+          - $ref: '#/components/schemas/LightFilter'
+          title: Light Condition
+          default: any
+        driver_impairment:
+          $ref: '#/components/schemas/DriverImpairment'
+          default: any
+        under_reporting:
+          $ref: '#/components/schemas/UnderReporting'
+          default: none
+        ci_method:
+          $ref: '#/components/schemas/CiMethod'
+          default: fay_feuer
+      additionalProperties: false
+      type: object
+      title: RouteSelections
+      description: Filters for POST /v1/compute/route (interstate-segment mode).
+    CiMethod:
+      type: string
+      enum:
+      - fay_feuer
+      - empirical_bayes
+      title: CiMethod
+    Outcome:
+      type: string
+      enum:
+      - police_reported
+      - observed_any_injury
+      - airbag
+      - ego_airbag
+      - ka
+      - fatal
+      title: Outcome
+    PerSegmentResult:
+      properties:
+        route:
+          type: string
+          title: Route
+        milepost:
+          type: integer
+          title: Milepost
+        count:
+          type: number
+          title: Count
+        vmt:
+          type: number
+          title: Vmt
+        length_mi:
+          type: number
+          title: Length Mi
+      additionalProperties: true
+      type: object
+      required:
+      - route
+      - milepost
+      - count
+      - vmt
+      - length_mi
+      title: PerSegmentResult
+    MultiplierVmt:
+      type: string
+      enum:
+      - calibrated
+      - hpms
+      title: MultiplierVmt
+    Tier3Mode:
+      type: string
+      enum:
+      - marginal
+      - none
+      - all
+      title: Tier3Mode
     ValidationError:
       properties:
         loc:
@@ -70,6 +375,262 @@ components:
       - msg
       - type
       title: ValidationError
+    UnderReporting:
+      type: string
+      enum:
+      - none
+      - adjusted
+      title: UnderReporting
+    BatchComputeResult:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/BatchItemResult'
+          type: array
+          title: Results
+      type: object
+      title: BatchComputeResult
+      description: Per-item results, in the same order as the request's `items`.
+    RouteComputeResult:
+      properties:
+        N:
+          type: number
+          title: N
+        trip_miles:
+          type: number
+          title: Trip Miles
+        rate:
+          type: number
+          title: Rate
+        rate_low:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Rate Low
+        rate_high:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Rate High
+        variance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Variance
+        segments:
+          items:
+            $ref: '#/components/schemas/PerSegmentResult'
+          type: array
+          title: Segments
+        exposure_sources:
+          items:
+            type: string
+          type: array
+          title: Exposure Sources
+        crash_sources:
+          items:
+            type: string
+          type: array
+          title: Crash Sources
+      additionalProperties: true
+      type: object
+      required:
+      - N
+      - trip_miles
+      - rate
+      title: RouteComputeResult
+    GeofenceSelections:
+      properties:
+        outcome:
+          $ref: '#/components/schemas/Outcome'
+          default: police_reported
+        severity:
+          type: integer
+          maximum: 7.0
+          minimum: 1.0
+          title: Severity
+          default: 1
+        ego_vehicle:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/VehicleClass'
+            type: array
+          - $ref: '#/components/schemas/VehicleClass'
+          title: Ego Vehicle
+          default:
+          - cars
+          - light_trucks
+          - heavy_trucks
+          - motorcycles
+          - buses
+        unresolved_nfs:
+          $ref: '#/components/schemas/Tier3Mode'
+          default: marginal
+        in_transport:
+          $ref: '#/components/schemas/InTransport'
+          default: in_transport
+        road_type:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/RoadGroup'
+            type: array
+          - $ref: '#/components/schemas/RoadGroup'
+          title: Road Type
+          default:
+          - collector_local
+          - arterial
+          - other_freeway
+          - interstate
+        operator_weighting:
+          $ref: '#/components/schemas/OperatorWeighting'
+          default: county_wide
+        multiplier_vmt:
+          $ref: '#/components/schemas/MultiplierVmt'
+          default: calibrated
+        operator_weight:
+          anyOf:
+          - type: number
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Operator Weight
+        denominator_vmt:
+          $ref: '#/components/schemas/DenominatorVmt'
+          default: calibrated
+        tiling:
+          $ref: '#/components/schemas/Tiling'
+          default: s2
+        under_reporting:
+          $ref: '#/components/schemas/UnderReporting'
+          default: none
+        weather:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/WeatherFilter'
+            type: array
+          - $ref: '#/components/schemas/WeatherFilter'
+          title: Weather
+          default:
+          - dry
+          - rain
+          - fog
+        light_condition:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LightFilter'
+            type: array
+          - $ref: '#/components/schemas/LightFilter'
+          title: Light Condition
+          default: any
+        crash_year:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: integer
+          title: Crash Year
+          default:
+          - 2022
+      additionalProperties: false
+      type: object
+      title: GeofenceSelections
+      description: Filters for POST /v1/compute (S2-cell / geofence mode).
+    WeatherFilter:
+      type: string
+      enum:
+      - any
+      - dry
+      - rain
+      - fog
+      - winter_storm
+      title: WeatherFilter
+    DepotSelections:
+      properties:
+        outcome:
+          $ref: '#/components/schemas/Outcome'
+          default: police_reported
+        severity:
+          type: integer
+          maximum: 7.0
+          minimum: 1.0
+          title: Severity
+          default: 1
+        ego_vehicle:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/VehicleClass'
+            type: array
+          - $ref: '#/components/schemas/VehicleClass'
+          title: Ego Vehicle
+          default:
+          - combination
+        unresolved_nfs:
+          $ref: '#/components/schemas/Tier3Mode'
+          default: marginal
+        in_transport:
+          $ref: '#/components/schemas/InTransport'
+          default: in_transport
+        weather:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/WeatherFilter'
+            type: array
+          - $ref: '#/components/schemas/WeatherFilter'
+          title: Weather
+          default:
+          - dry
+          - rain
+          - fog
+        light_condition:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LightFilter'
+            type: array
+          - $ref: '#/components/schemas/LightFilter'
+          title: Light Condition
+          default: any
+        driver_impairment:
+          $ref: '#/components/schemas/DriverImpairment'
+          default: any
+        under_reporting:
+          $ref: '#/components/schemas/UnderReporting'
+          default: none
+        ci_method:
+          $ref: '#/components/schemas/CiMethod'
+          default: empirical_bayes
+      additionalProperties: false
+      type: object
+      title: DepotSelections
+      description: Filters for POST /v1/compute/depot-route (depot-to-depot trip).
+    DenominatorVmt:
+      type: string
+      enum:
+      - calibrated
+      - hpms
+      title: DenominatorVmt
+    BatchItemResult:
+      properties:
+        county:
+          type: string
+          title: County
+        result:
+          anyOf:
+          - $ref: '#/components/schemas/ComputeResult'
+          - type: 'null'
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      additionalProperties: true
+      type: object
+      required:
+      - county
+      title: BatchItemResult
+      description: 'One entry of a batch compute response. Exactly one of `result` / `error`
+
+        is set: `result` on success, `error` (a message) when that county''s compute
+
+        failed (so one bad county doesn''t sink the whole batch).'
     ComputeRequest:
       properties:
         county:
@@ -93,3 +654,224 @@ components:
           default: false
       type: object
       title: ComputeRequest
+    OperatorWeighting:
+      type: string
+      enum:
+      - county_wide
+      - robotaxi
+      title: OperatorWeighting
+    LightFilter:
+      type: string
+      enum:
+      - any
+      - daylight
+      - dawn_dusk
+      - dark
+      title: LightFilter
+    V1RouteRequest:
+      properties:
+        county:
+          type: string
+          title: County
+          default: travis
+        segment_ids:
+          items:
+            prefixItems:
+            - type: string
+            - type: integer
+            type: array
+            maxItems: 2
+            minItems: 2
+          type: array
+          title: Segment Ids
+          description: Ordered [route, milepost] pairs, e.g. [["I-35", 250], ["I-35", 251]].
+        selections:
+          $ref: '#/components/schemas/RouteSelections'
+      type: object
+      required:
+      - segment_ids
+      title: V1RouteRequest
+    RoadGroup:
+      type: string
+      enum:
+      - interstate
+      - other_freeway
+      - arterial
+      - collector_local
+      title: RoadGroup
+    DriverImpairment:
+      type: string
+      enum:
+      - any
+      - exclude_impaired
+      - impaired_only
+      title: DriverImpairment
+    InTransport:
+      type: string
+      enum:
+      - in_transport
+      - include_all
+      title: InTransport
+    V1BatchRequest:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/V1BatchItem'
+          type: array
+          title: Items
+          description: One (county, selections) combination per entry. Selections are per-item because a value valid in one county can be invalid in another, so the batch can't share a single selection set.
+        summary_only:
+          type: boolean
+          title: Summary Only
+          description: Batch defaults to summary-only (no per-cell breakdown), as it exists for multi-county comparison. Set false to include `cells`.
+          default: true
+      type: object
+      title: V1BatchRequest
+    V1DepotRequest:
+      properties:
+        county:
+          type: string
+          title: County
+          default: travis
+        depot_a:
+          $ref: '#/components/schemas/DepotPin'
+        depot_b:
+          $ref: '#/components/schemas/DepotPin'
+        selections:
+          $ref: '#/components/schemas/DepotSelections'
+      type: object
+      required:
+      - depot_a
+      - depot_b
+      title: V1DepotRequest
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    VehicleClass:
+      type: string
+      enum:
+      - cars
+      - light_trucks
+      - heavy_trucks
+      - motorcycles
+      - buses
+      - other
+      title: VehicleClass
+    ComputeResult:
+      properties:
+        N:
+          type: number
+          title: N
+        D_miles:
+          type: number
+          title: D Miles
+        D_billions:
+          type: number
+          title: D Billions
+        rate:
+          type: number
+          title: Rate
+        rate_low:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Rate Low
+        rate_high:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Rate High
+        rate_non_dyn:
+          type: number
+          title: Rate Non Dyn
+        rate_dyn:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Rate Dyn
+        multiplier:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Multiplier
+        cells:
+          items:
+            $ref: '#/components/schemas/PerCellResult'
+          type: array
+          title: Cells
+      additionalProperties: true
+      type: object
+      required:
+      - N
+      - D_miles
+      - D_billions
+      - rate
+      - rate_non_dyn
+      title: ComputeResult
+    V1ComputeRequest:
+      properties:
+        county:
+          type: string
+          title: County
+          default: travis
+        selections:
+          $ref: '#/components/schemas/GeofenceSelections'
+        summary_only:
+          type: boolean
+          title: Summary Only
+          description: Drop the per-cell `cells` breakdown (returned as []), keeping just the county-wide scalars. Cuts the bulk of the response for callers that don't need the map heatmap.
+          default: false
+      type: object
+      title: V1ComputeRequest
+    PerCellResult:
+      properties:
+        s2_cell:
+          type: string
+          title: S2 Cell
+        count:
+          type: number
+          title: Count
+        vmt:
+          type: number
+          title: Vmt
+        mult_contrib:
+          type: number
+          title: Mult Contrib
+          default: 0.0
+      additionalProperties: true
+      type: object
+      required:
+      - s2_cell
+      - count
+      - vmt
+      title: PerCellResult
+    DepotComputeResult:
+      properties: {}
+      additionalProperties: true
+      type: object
+      title: DepotComputeResult
+      description: 'Three-leg depot-to-depot trip. Shape mirrors engine.compute_depot_route;
+
+        left loose because it carries leg sub-objects + geometry for rendering.'
+    V1BatchItem:
+      properties:
+        county:
+          type: string
+          title: County
+          default: travis
+        selections:
+          $ref: '#/components/schemas/GeofenceSelections'
+      type: object
+      title: V1BatchItem
+    Tiling:
+      type: string
+      enum:
+      - s2
+      - h3
+      title: Tiling

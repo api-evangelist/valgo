@@ -8,12 +8,15 @@
     "valgo-compute-batch-api-openapi.yml",
     "valgo-compute-depot-route-api-openapi.yml",
     "valgo-compute-route-api-openapi.yml",
+    "valgo-filters-api-openapi.yml",
     "valgo-health-api-openapi.yml",
     "valgo-manifest-api-openapi.yml",
-    "valgo-request-api-key-api-openapi.yml",
-    "valgo-v1-api-openapi.yml"
+    "valgo-regions-api-openapi.yml",
+    "valgo-request-api-key-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -26,15 +29,24 @@
     "valgo-humanbaselines-openapi.json: tagged paths POST /compute-route -> Compute Route",
     "valgo-humanbaselines-openapi.json: tagged paths POST /compute-depot-route -> Compute Depot Route",
     "valgo-humanbaselines-openapi.json: tagged paths POST /request-api-key -> Request Api Key",
+    "valgo-humanbaselines-openapi.json: tagged paths GET /v1/filters -> Filters",
+    "valgo-humanbaselines-openapi.json: tagged paths GET /v1/regions -> Regions",
+    "valgo-humanbaselines-openapi.json: tagged paths GET /v1/manifest -> Manifest",
+    "valgo-humanbaselines-openapi.json: tagged paths POST /v1/compute -> Compute",
+    "valgo-humanbaselines-openapi.json: tagged paths POST /v1/compute/batch -> Compute",
+    "valgo-humanbaselines-openapi.json: tagged paths POST /v1/compute/route -> Compute",
+    "valgo-humanbaselines-openapi.json: tagged paths POST /v1/compute/depot-route -> Compute",
     "valgo-humanbaselines-openapi.json: declared missing tag: Compute",
     "valgo-humanbaselines-openapi.json: declared missing tag: Compute Batch",
     "valgo-humanbaselines-openapi.json: declared missing tag: Compute Depot Route",
     "valgo-humanbaselines-openapi.json: declared missing tag: Compute Route",
+    "valgo-humanbaselines-openapi.json: declared missing tag: Filters",
     "valgo-humanbaselines-openapi.json: declared missing tag: Health",
     "valgo-humanbaselines-openapi.json: declared missing tag: Manifest",
+    "valgo-humanbaselines-openapi.json: declared missing tag: Regions",
     "valgo-humanbaselines-openapi.json: declared missing tag: Request Api Key",
-    "valgo-humanbaselines-openapi.json: declared missing tag: v1",
-    "apis.yml register: already-registered"
+    "superseded outputs removed: valgo-v1-api-openapi.yml",
+    "apis.yml register: written (+2 apis, 9 total)"
   ],
   "skipped": [
     "valgo-compute-api-openapi.yml: previously refined output, superseded by openapi/_original/",

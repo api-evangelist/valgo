@@ -171,16 +171,32 @@ apis:
     url: https://docs.humanbaselines.com/reference/client
   - type: GettingStarted
     url: https://docs.humanbaselines.com/getting-started/quickstart
-- aid: valgo:valgo-v1-api
-  name: Valgo v1 API
-  description: The v1 API from Valgo — 7 operation(s) for v1.
+- aid: valgo:valgo-filters-api
+  name: Valgo Filters API
+  description: The Filters API from Valgo — 1 operation(s) for filters.
   humanURL: https://docs.humanbaselines.com
   baseURL: https://humanbaselines.com/v1
   tags:
-  - v1
+  - Filters
   properties:
   - type: OpenAPI
-    url: openapi/valgo-v1-api-openapi.yml
+    url: openapi/valgo-filters-api-openapi.yml
+  - type: Documentation
+    url: https://docs.humanbaselines.com
+  - type: APIReference
+    url: https://docs.humanbaselines.com/reference/client
+  - type: GettingStarted
+    url: https://docs.humanbaselines.com/getting-started/quickstart
+- aid: valgo:valgo-regions-api
+  name: Valgo Regions API
+  description: The Regions API from Valgo — 1 operation(s) for regions.
+  humanURL: https://docs.humanbaselines.com
+  baseURL: https://humanbaselines.com/v1
+  tags:
+  - Regions
+  properties:
+  - type: OpenAPI
+    url: openapi/valgo-regions-api-openapi.yml
   - type: Documentation
     url: https://docs.humanbaselines.com
   - type: APIReference

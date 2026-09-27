@@ -38,6 +38,36 @@ paths:
       - Request Api Key
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ApiKeyResponse:
+      properties:
+        api_key:
+          type: string
+          title: Api Key
+        email:
+          type: string
+          title: Email
+        emailed:
+          type: boolean
+          title: Emailed
+        env_var:
+          type: string
+          title: Env Var
+          default: HUMANBASELINES_API_KEY
+      type: object
+      required:
+      - api_key
+      - email
+      - emailed
+      title: ApiKeyResponse
     ApiKeyRequest:
       properties:
         email:
@@ -48,15 +78,6 @@ components:
       - email
       title: ApiKeyRequest
       description: The web form posts just an email; that's all we need to mint a key.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -83,24 +104,3 @@ components:
       - msg
       - type
       title: ValidationError
-    ApiKeyResponse:
-      properties:
-        api_key:
-          type: string
-          title: Api Key
-        email:
-          type: string
-          title: Email
-        emailed:
-          type: boolean
-          title: Emailed
-        env_var:
-          type: string
-          title: Env Var
-          default: HUMANBASELINES_API_KEY
-      type: object
-      required:
-      - api_key
-      - email
-      - emailed
-      title: ApiKeyResponse
