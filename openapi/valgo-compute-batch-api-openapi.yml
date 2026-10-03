@@ -40,15 +40,6 @@ paths:
       - Compute Batch
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ComputeBatchItem:
       properties:
         county:
@@ -68,19 +59,6 @@ components:
           title: Cell Filter
       type: object
       title: ComputeBatchItem
-    ComputeBatchRequest:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ComputeBatchItem'
-          type: array
-          title: Items
-        summary_only:
-          type: boolean
-          title: Summary Only
-          default: true
-      type: object
-      title: ComputeBatchRequest
     ValidationError:
       properties:
         loc:
@@ -107,3 +85,25 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ComputeBatchRequest:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ComputeBatchItem'
+          type: array
+          title: Items
+        summary_only:
+          type: boolean
+          title: Summary Only
+          default: true
+      type: object
+      title: ComputeBatchRequest

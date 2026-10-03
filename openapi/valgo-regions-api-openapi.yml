@@ -45,21 +45,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    RegionInfo:
-      properties:
-        county:
-          type: string
-          title: County
-        modes:
-          items:
-            type: string
-          type: array
-          title: Modes
-      type: object
-      required:
-      - county
-      - modes
-      title: RegionInfo
     HTTPValidationError:
       properties:
         detail:
@@ -110,3 +95,18 @@ components:
       required:
       - regions
       title: RegionsResponse
+    RegionInfo:
+      properties:
+        county:
+          type: string
+          title: County
+        modes:
+          items:
+            type: string
+          type: array
+          title: Modes
+      type: object
+      required:
+      - county
+      - modes
+      title: RegionInfo

@@ -47,15 +47,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     FilterDef:
       properties:
         id:
@@ -103,19 +94,6 @@ components:
       - id
       - label
       title: FilterOption
-    FiltersResponse:
-      properties:
-        modes:
-          additionalProperties:
-            items:
-              $ref: '#/components/schemas/FilterDef'
-            type: array
-          type: object
-          title: Modes
-      type: object
-      required:
-      - modes
-      title: FiltersResponse
     ValidationError:
       properties:
         loc:
@@ -142,3 +120,25 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    FiltersResponse:
+      properties:
+        modes:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/FilterDef'
+            type: array
+          type: object
+          title: Modes
+      type: object
+      required:
+      - modes
+      title: FiltersResponse

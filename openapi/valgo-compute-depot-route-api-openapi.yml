@@ -35,28 +35,25 @@ paths:
       - Compute Depot Route
 components:
   schemas:
-    HTTPValidationError:
+    ComputeDepotRouteRequest:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    DepotPin:
-      properties:
-        lat:
-          type: number
-          title: Lat
-        lon:
-          type: number
-          title: Lon
+        county:
+          type: string
+          title: County
+          default: travis
+        depot_a:
+          $ref: '#/components/schemas/DepotPin'
+        depot_b:
+          $ref: '#/components/schemas/DepotPin'
+        selections:
+          additionalProperties: true
+          type: object
+          title: Selections
       type: object
       required:
-      - lat
-      - lon
-      title: DepotPin
+      - depot_a
+      - depot_b
+      title: ComputeDepotRouteRequest
     ValidationError:
       properties:
         loc:
@@ -83,22 +80,25 @@ components:
       - msg
       - type
       title: ValidationError
-    ComputeDepotRouteRequest:
+    HTTPValidationError:
       properties:
-        county:
-          type: string
-          title: County
-          default: travis
-        depot_a:
-          $ref: '#/components/schemas/DepotPin'
-        depot_b:
-          $ref: '#/components/schemas/DepotPin'
-        selections:
-          additionalProperties: true
-          type: object
-          title: Selections
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    DepotPin:
+      properties:
+        lat:
+          type: number
+          title: Lat
+        lon:
+          type: number
+          title: Lon
       type: object
       required:
-      - depot_a
-      - depot_b
-      title: ComputeDepotRouteRequest
+      - lat
+      - lon
+      title: DepotPin
