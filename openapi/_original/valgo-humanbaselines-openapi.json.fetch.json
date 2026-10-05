@@ -1,0 +1,12 @@
+{
+ "url": "https://humanbaselines.com/openapi.json",
+ "requested_url": "https://humanbaselines.com/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 29804,
+ "sha256": "cf79231ecf29e30a0a0fdacdf077b4c5c26c1173bcae26311ac27b3e02495421",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
