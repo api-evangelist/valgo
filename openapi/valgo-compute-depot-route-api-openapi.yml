@@ -35,6 +35,47 @@ paths:
       - Compute Depot Route
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    DepotPin:
+      properties:
+        lat:
+          type: number
+          title: Lat
+        lon:
+          type: number
+          title: Lon
+      type: object
+      required:
+      - lat
+      - lon
+      title: DepotPin
+    ComputeDepotRouteRequest:
+      properties:
+        county:
+          type: string
+          title: County
+          default: travis
+        depot_a:
+          $ref: '#/components/schemas/DepotPin'
+        depot_b:
+          $ref: '#/components/schemas/DepotPin'
+        selections:
+          additionalProperties: true
+          type: object
+          title: Selections
+      type: object
+      required:
+      - depot_a
+      - depot_b
+      title: ComputeDepotRouteRequest
     ValidationError:
       properties:
         loc:
@@ -61,44 +102,3 @@ components:
       - msg
       - type
       title: ValidationError
-    ComputeDepotRouteRequest:
-      properties:
-        county:
-          type: string
-          title: County
-          default: travis
-        depot_a:
-          $ref: '#/components/schemas/DepotPin'
-        depot_b:
-          $ref: '#/components/schemas/DepotPin'
-        selections:
-          additionalProperties: true
-          type: object
-          title: Selections
-      type: object
-      required:
-      - depot_a
-      - depot_b
-      title: ComputeDepotRouteRequest
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    DepotPin:
-      properties:
-        lat:
-          type: number
-          title: Lat
-        lon:
-          type: number
-          title: Lon
-      type: object
-      required:
-      - lat
-      - lon
-      title: DepotPin

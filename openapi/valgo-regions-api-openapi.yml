@@ -45,6 +45,30 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    RegionInfo:
+      properties:
+        county:
+          type: string
+          title: County
+        modes:
+          items:
+            type: string
+          type: array
+          title: Modes
+      type: object
+      required:
+      - county
+      - modes
+      title: RegionInfo
     ValidationError:
       properties:
         loc:
@@ -71,15 +95,6 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     RegionsResponse:
       properties:
         regions:
@@ -95,18 +110,3 @@ components:
       required:
       - regions
       title: RegionsResponse
-    RegionInfo:
-      properties:
-        county:
-          type: string
-          title: County
-        modes:
-          items:
-            type: string
-          type: array
-          title: Modes
-      type: object
-      required:
-      - county
-      - modes
-      title: RegionInfo
