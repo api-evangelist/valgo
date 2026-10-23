@@ -104,3 +104,9 @@ components:
       - email
       title: ApiKeyRequest
       description: The web form posts just an email; that's all we need to mint a key.
+x-provenance:
+  method: harvested
+  publisher: Valgo
+  source: https://humanbaselines.com/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
